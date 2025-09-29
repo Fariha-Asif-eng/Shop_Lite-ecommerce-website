@@ -5,7 +5,7 @@ import { GetUser, CreateUser, UpdateUser } from "../Auth/CreateUser";
 
 import InputStyle from "../MiniParts/InputStyles";
 import H2Styles from "../MiniParts/H2Styles";
-import InpLable from "../MiniParts/inpLable";
+import InpLable from "../MiniParts/InpLable";
 import BTNstyles from "../MiniParts/BTNstyles";
 import Login from "../Account/Login";
 
