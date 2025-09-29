@@ -2,7 +2,7 @@ import React from "react";
 import { Formik, Form } from "formik";
 import * as Yup from "yup";
 import H2Styles from "../MiniParts/H2Styles";
-import InpLable from "../MiniParts/inpLable";
+import InpLable from "../MiniParts/InpLable";
 import InputStyle from "../MiniParts/InputStyles";
 
 const Contact = () => {
