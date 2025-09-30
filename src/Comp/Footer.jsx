@@ -1,68 +1,87 @@
-import { NavLink } from "react-router-dom";
-import Logo from "./Logo";
+
+import React from 'react';
+import { NavLink } from 'react-router-dom';
 
 function Footer() {
   return (
-    <footer className="bg-zinc-900 text-zinc-400 mt-12 w-full bottom-0">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
-        
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          
-          {/* Logo / Brand */}
-          <div>
-            <Logo/>
-            <p className="mt-2 text-sm">
-              All you need are here, shop like your's.
+    <footer className="bg-gradient-to-br from-gray-900 to-black text-white pt-16 pb-8">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
+          {/* Company Info - Same Logo as Navbar */}
+          <div className="space-y-4">
+            <NavLink to={'/'} className='w-auto cursor-pointer bg-transparent flex items-center space-x-2'>
+              <p className='text-3xl font-semibold bg-transparent text-[#fd366e]'>Shop</p> 
+              <span className='text-white animate-bounce bg-transparent ml-[-20px] mb-1 text-xl'>Lite</span>
+            </NavLink>
+            <p className="text-gray-400 leading-relaxed text-sm">
+              Your one-stop destination for quality products and amazing shopping experience.
             </p>
+            <div className="flex space-x-3">
+              <div className="bg-gray-800 p-2 rounded-lg hover:bg-gradient-to-r hover:from-blue-500 hover:to-purple-500 transition-all duration-300 cursor-pointer transform hover:scale-110">
+                <span className="text-white text-sm">📘</span>
+              </div>
+              <div className="bg-gray-800 p-2 rounded-lg hover:bg-gradient-to-r hover:from-purple-500 hover:to-pink-500 transition-all duration-300 cursor-pointer transform hover:scale-110">
+                <span className="text-white text-sm">📷</span>
+              </div>
+              <div className="bg-gray-800 p-2 rounded-lg hover:bg-gradient-to-r hover:from-green-500 hover:to-blue-500 transition-all duration-300 cursor-pointer transform hover:scale-110">
+                <span className="text-white text-sm">🐦</span>
+              </div>
+            </div>
           </div>
 
-          <div>
-            <h3 className="text-zinc-100 font-semibold mb-3">Navigation</h3>
-            <ul className="space-y-2 flex gap-8">
-              <li>
-                <NavLink  to="/" className={({isActive}) => (isActive ? 'border-b-2 text-amber-300 font-semibold border-amber-300 pb-1' : " hover:text-zinc-200")}
-                >Home</NavLink>
-              </li>
-
-              <li>
-                <NavLink to="/about" className={({isActive}) => (isActive ? 'border-b-2 text-amber-300 font-semibold border-amber-300 pb-1' : " hover:text-zinc-200")}>About</NavLink>
-              </li>
-              <li>
-                <NavLink to="/shop" className={({isActive}) => (isActive ? 'border-b-2 text-amber-300 font-semibold border-amber-300 pb-1' : " hover:text-zinc-200")}>Shop</NavLink>
-              </li>
-              
-              <li>
-                <NavLink to="/login" className={({isActive}) => (isActive ? 'border-b-2 text-amber-300 font-semibold border-amber-300 pb-1' : " hover:text-zinc-200")}>Account</NavLink>
-              </li>
-            </ul>
+          {/* Quick Links */}
+          <div className="space-y-4">
+            <h3 className="font-bold text-lg bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">
+              Quick Links
+            </h3>
+            <div className="space-y-2">
+              <NavLink to="/" className="block text-gray-400 hover:text-white transition-colors duration-300 text-sm">Home</NavLink>
+              <NavLink to="/shop" className="block text-gray-400 hover:text-white transition-colors duration-300 text-sm">Shop</NavLink>
+              <NavLink to="/about" className="block text-gray-400 hover:text-white transition-colors duration-300 text-sm">About</NavLink>
+              <NavLink to="/contactform" className="block text-gray-400 hover:text-white transition-colors duration-300 text-sm">Contact</NavLink>
+            </div>
           </div>
 
+          {/* Customer Service */}
+          <div className="space-y-4">
+            <h3 className="font-bold text-lg bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">
+              Customer Service
+            </h3>
+            <div className="space-y-2">
+              <a href="#" className="block text-gray-400 hover:text-white transition-colors duration-300 text-sm">FAQ</a>
+              <a href="#" className="block text-gray-400 hover:text-white transition-colors duration-300 text-sm">Shipping</a>
+              <a href="#" className="block text-gray-400 hover:text-white transition-colors duration-300 text-sm">Returns</a>
+              <a href="#" className="block text-gray-400 hover:text-white transition-colors duration-300 text-sm">Privacy Policy</a>
+            </div>
+          </div>
 
-          <div>
-            <h3 className="text-zinc-100 font-semibold mb-3">Connect</h3>
-            <ul className="space-y-2">
-              <li>
-                <a href="https://twitter.com" target="_blank" rel="noreferrer" className="hover:text-zinc-200">
-                  Twitter
-                </a>
-              </li>
-              <li>
-                <a href="https://github.com" target="_blank" rel="noreferrer" className="hover:text-zinc-200">
-                  GitHub
-                </a>
-              </li>
-              <li>
-                <a href="https://linkedin.com" target="_blank" rel="noreferrer" className="hover:text-zinc-200">
-                  LinkedIn
-                </a>
-              </li>
-            </ul>
+          {/* Contact Info */}
+          <div className="space-y-4">
+            <h3 className="font-bold text-lg bg-gradient-to-r from-pink-400 to-red-400 bg-clip-text text-transparent">
+              Contact Us
+            </h3>
+            <div className="space-y-2 text-gray-400 text-sm">
+              <p className="flex items-center space-x-2">
+                <span>📧</span>
+                <span>hello@shoplite.com</span>
+              </p>
+              <p className="flex items-center space-x-2">
+                <span>📞</span>
+                <span>+1 (555) 123-4567</span>
+              </p>
+              <p className="flex items-center space-x-2">
+                <span>📍</span>
+                <span>123 Commerce St, City, State</span>
+              </p>
+            </div>
           </div>
         </div>
 
-        {/* Bottom bar */}
-        <div className="border-t border-zinc-700 mt-8 pt-4 text-center text-sm text-zinc-500">
-          ShopLite © {new Date().getFullYear()} All rights reserved.
+        {/* Bottom Bar */}
+        <div className="border-t border-gray-800 pt-8 text-center">
+          <p className="text-gray-400 text-sm">
+            © 2024 Shop Lite. All rights reserved. Made with ❤️
+          </p>
         </div>
       </div>
     </footer>
