@@ -26,6 +26,9 @@ import { AuthProvider, useAuth } from "./Auth/AuthContext";
 import AccountOptions from "./Account/AccountOptions";
 import MobileMenu from "./Comp/MobileMenu";
 
+// ✅ Theme Context Import
+import { ThemeProvider, useTheme } from "./context/ThemeContext";
+
 function AppContent() {
   const [cartItems, setCartItems] = useState([]);
   const [categories, setCategories] = useState([]);
@@ -36,6 +39,10 @@ function AppContent() {
   const [loading, setLoading] = useState(false);
   
   const { isAuthenticated } = useAuth();
+  
+  // ✅ Use Theme Context instead of local state
+  const { theme, toggleTheme, isDark } = useTheme();
+  
   let location = useLocation();
 
   useEffect(() => {
@@ -79,18 +86,26 @@ function AppContent() {
   const [accountOpts, setAccountOpts] = useState(false);
   const [mobileMenuOpn, setMobileMenu] = useState(false);
 
-  const [darkMode, setMode] = useState(()=>{
-    return localStorage.getItem('dark')=== true;
+  // ❌ REMOVE OLD DARK MODE CODE - Using Theme Context Now
+  /*
+  const [darkMode, setDarkMode] = useState(() => {
+    const saved = localStorage.getItem('darkMode');
+    return saved === 'true';
   });
-useEffect(()=>{
-  localStorage.setItem("darkMode", darkMode);
-  if(darkMode){
-    document.body.classList.add("dark");
-  } else{
-    document.body.classList.remove("dark");
-  }
-}, [darkMode])
-  
+
+  const toggleDarkMode = () => {
+    setDarkMode(prevMode => !prevMode);
+  };
+
+  useEffect(() => {
+    localStorage.setItem("darkMode", darkMode.toString());
+    if (darkMode) {
+      document.documentElement.classList.add("dark");
+    } else {
+      document.documentElement.classList.remove("dark");
+    }
+  }, [darkMode]);
+  */
 
   return (
     <>
@@ -100,7 +115,7 @@ useEffect(()=>{
         </div>
       )}
       
-      <main className="w-full min-h-screen flex flex-col gap-2">
+      <main className="w-full min-h-screen flex flex-col gap-2 dark:bg-gray-900 dark:text-white">
         <Header
           btnText={openCart ? <BsCartX /> : <BsCartCheck />}
           searching={searching}
@@ -108,9 +123,10 @@ useEffect(()=>{
           ontoggle={() => setOpenCart(!openCart)}
           currentItems={cartItems.length}
           setCateButton={() => setCateButton(!categoryButton)}
-          AccountOptBtn={()=> setAccountOpts(!accountOpts)}
-          mobileMenu={()=>setMobileMenu(!mobileMenuOpn)}
-         
+          AccountOptBtn={() => setAccountOpts(!accountOpts)}
+          mobileMenu={() => setMobileMenu(!mobileMenuOpn)}
+          toggleDarkMode={toggleTheme} // ✅ Use toggleTheme from context
+          darkMode={isDark} // ✅ Use isDark from context
         />
 
         <Routes>
@@ -125,7 +141,6 @@ useEffect(()=>{
           <Route path="/about" element={<About />} />
           <Route path="/shop" element={<Shop onAdd={addToCart} products={filterOutItems} />} />
           <Route path="/cartbox" element={<CartBox cartItems={cartItems} setCartItems={setCartItems} />} />
-          {/* <Route path="accountoptions" element={<AccountOptions/>} /> */}
         </Routes>
 
         <Footer />
@@ -138,17 +153,18 @@ useEffect(()=>{
           <MyCart cartItems={cartItems} setCartItems={setCartItems} />
         )}
 
-        {
-          accountOpts && (
-            <AccountOptions toggleMode={()=>setMode(!darkMode)} setOpts={setAccountOpts}/>
-          )
-        }
+        {accountOpts && (
+          <AccountOptions setOpts={setAccountOpts} />
+        )}
 
-        {
-          mobileMenuOpn && (
-            <MobileMenu AccountOptBtn={accountOpts} setOpts={setMobileMenu} toggleMode={()=>setMode(!darkMode)}/>
-          )
-        }
+        {mobileMenuOpn && (
+          <MobileMenu 
+            AccountOptBtn={() => setAccountOpts(!accountOpts)} 
+            setOpts={setMobileMenu} 
+            toggleMode={toggleTheme} // ✅ Use toggleTheme from context
+            darkMode={isDark} // ✅ Use isDark from context
+          />
+        )}
       </main>
     </>
   );
@@ -158,7 +174,10 @@ function App() {
   return (
     <BrowserRouter>
       <AuthProvider>
-        <AppContent />
+        {/* ✅ Wrap with ThemeProvider */}
+        <ThemeProvider>
+          <AppContent />
+        </ThemeProvider>
       </AuthProvider>
     </BrowserRouter>
   );
