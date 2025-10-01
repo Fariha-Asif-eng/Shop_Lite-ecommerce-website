@@ -23,6 +23,8 @@ import FeaturedQuality from "./Comp/FeaturedQuality";
 import FeaturedPro from "./Comp/FeaturedPro";
 import Logo from "./Comp/Logo";
 import { AuthProvider, useAuth } from "./Auth/AuthContext";
+import AccountOptions from "./Account/AccountOptions";
+import MobileMenu from "./Comp/MobileMenu";
 
 function AppContent() {
   const [cartItems, setCartItems] = useState([]);
@@ -74,6 +76,22 @@ function AppContent() {
     return () => clearTimeout(timer);
   }, [location]);
 
+  const [accountOpts, setAccountOpts] = useState(false);
+  const [mobileMenuOpn, setMobileMenu] = useState(false);
+
+  const [darkMode, setMode] = useState(()=>{
+    return localStorage.getItem('dark')=== true;
+  });
+useEffect(()=>{
+  localStorage.setItem("darkMode", darkMode);
+  if(darkMode){
+    document.body.classList.add("dark");
+  } else{
+    document.body.classList.remove("dark");
+  }
+}, [darkMode])
+  
+
   return (
     <>
       {loading && (
@@ -90,6 +108,9 @@ function AppContent() {
           ontoggle={() => setOpenCart(!openCart)}
           currentItems={cartItems.length}
           setCateButton={() => setCateButton(!categoryButton)}
+          AccountOptBtn={()=> setAccountOpts(!accountOpts)}
+          mobileMenu={()=>setMobileMenu(!mobileMenuOpn)}
+         
         />
 
         <Routes>
@@ -104,6 +125,7 @@ function AppContent() {
           <Route path="/about" element={<About />} />
           <Route path="/shop" element={<Shop onAdd={addToCart} products={filterOutItems} />} />
           <Route path="/cartbox" element={<CartBox cartItems={cartItems} setCartItems={setCartItems} />} />
+          {/* <Route path="accountoptions" element={<AccountOptions/>} /> */}
         </Routes>
 
         <Footer />
@@ -115,6 +137,18 @@ function AppContent() {
         {openCart && (
           <MyCart cartItems={cartItems} setCartItems={setCartItems} />
         )}
+
+        {
+          accountOpts && (
+            <AccountOptions toggleMode={()=>setMode(!darkMode)} setOpts={setAccountOpts}/>
+          )
+        }
+
+        {
+          mobileMenuOpn && (
+            <MobileMenu AccountOptBtn={accountOpts} setOpts={setMobileMenu} toggleMode={()=>setMode(!darkMode)}/>
+          )
+        }
       </main>
     </>
   );

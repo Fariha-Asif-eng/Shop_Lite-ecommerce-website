@@ -3,10 +3,11 @@ import React from 'react'
 import Logo from './Logo';
 import CartButton from './CartButton';
 import { NavLink } from 'react-router-dom';
-import { BsFilterCircleFill } from 'react-icons/bs';
+import { BsFillMenuButtonFill, BsFillMenuButtonWideFill, BsFilterCircleFill } from 'react-icons/bs';
 import { useAuth } from '../Auth/AuthContext';
+import { TfiMenuAlt } from 'react-icons/tfi';
 
-function Header({ontoggle, btnText, searching, searchItems, currentItems, setCateButton}) {
+function Header({ontoggle, btnText, searching, searchItems, currentItems, setCateButton, AccountOptBtn, mobileMenu}) {
     const { user, logout, isAuthenticated } = useAuth();
     
     const onChange = (a)=>{
@@ -14,10 +15,10 @@ function Header({ontoggle, btnText, searching, searchItems, currentItems, setCat
       console.log(searchItems);
     }
 
-    const handleLogout = () => {
-      logout();
-      window.location.href = '/';
-    }
+    // const handleLogout = () => {
+    //   logout();
+    //   window.location.href = '/';
+    // }
 
   return (
     
@@ -28,7 +29,7 @@ function Header({ontoggle, btnText, searching, searchItems, currentItems, setCat
         </div>
         
         {/* Navigation Links - Light text on dark background */}
-        <div className="flex items-center gap-4">
+        <div className=" md:items-center gap-4 hidden md:flex">
           <NavLink 
             to={'/'} 
             className={({ isActive }) => 
@@ -101,46 +102,52 @@ function Header({ontoggle, btnText, searching, searchItems, currentItems, setCat
         </div>
 
         {/* User Auth & Cart - Right Side */}
-        <div className="flex items-center gap-3">
+        <div className="md:flex items-center gap-3 hidden mx-2">
           {/* Authentication */}
+          
           {isAuthenticated ? (
             <div className="flex items-center gap-2">
-              <NavLink 
-                to={'/profilepage'} 
+              <button onClick={AccountOptBtn} 
+                // to={'/profilepage'} 
                 className="flex items-center gap-1 cursor-pointer bg-gradient-to-r from-emerald-500 to-green-500 text-white px-3 py-2 rounded-lg hover:from-emerald-600 hover:to-green-600 transition-all duration-300 text-sm font-semibold border border-emerald-400 shadow-lg"
               >
                 <span>👋</span>
                 <span className="max-w-16 truncate">{user?.name}</span>
-              </NavLink>
-              <button 
+              </button>
+              {/* <button 
                 onClick={handleLogout}
                 className="cursor-pointer bg-gradient-to-r from-red-500 to-pink-500 text-white px-3 py-2 rounded-lg hover:from-red-600 hover:to-pink-600 transition-all duration-300 text-sm font-semibold border border-red-400 shadow-lg"
               >
                 Logout
-              </button>
+              </button> */}
             </div>
           ) : (
             <div className="flex items-center gap-2">
-              <NavLink 
+              {/* <NavLink 
                 to={'/login'} 
                 className="cursor-pointer text-gray-300 hover:text-white font-semibold transition-colors duration-300 px-3 py-2 rounded-lg hover:bg-gray-700 text-sm border border-gray-600"
               >
                 Login
-              </NavLink>
+              </NavLink> */}
               <NavLink 
-                to={'/signup'} 
+                to={'/login'} 
                 className="cursor-pointer bg-gradient-to-r from-blue-500 to-purple-500 text-white px-4 py-2 rounded-lg hover:from-blue-600 hover:to-purple-600 transition-all duration-300 text-sm font-semibold border border-blue-400 shadow-lg"
               >
-                Sign Up
+                Sign in
               </NavLink>
             </div>
-          )}
+          )
+          }
           
-          {/* Cart Button */}
+          
+        </div>
+        {/* Cart Button */}
           <div className="ml-1">
             <CartButton currentItems={currentItems} btnText={btnText} onToggle={ontoggle} />
           </div>
-        </div>
+          <button onClick={mobileMenu} className='md:hidden' >
+            <TfiMenuAlt className='w-10 h-10 rounded-full fill-amber-50 bg-purple-700 p-[4px] cursor-pointer hover:bg-purple-500 transition-colors duration-200'/>
+          </button>
       </header>
    
   )
