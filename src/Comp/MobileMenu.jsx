@@ -10,6 +10,7 @@ function MobileMenu({setOpts, AccountOptBtn, toggleMode}) {
         //   searchItems(a.target.value)
         //   console.log(searchItems);
         // }
+        //Commits
   return (
     <div className='min-w-1/3 min-h-[100vh] md:hidden fixed top-0 left-0 rounded-md p-4 flex flex-col gap-y-2 z-90 bg-gradient-to-r from-amber-900 to-amber-400/50'>
         <div className="flex items-center gap-3">
