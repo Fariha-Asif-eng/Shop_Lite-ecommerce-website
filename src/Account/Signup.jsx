@@ -96,7 +96,7 @@ function SignUp() {
               flex flex-col max-w-[480px] w-full 
               border border-zinc-800 rounded-lg 
               py-8 px-6 
-              bg-zinc-800 text-white 
+              bg-gradient-to-t from-amber-500/20 to-amber-800/80 text-white 
               shadow-lg shadow-black/40
               transition-all duration-300 ease-in-out 
               hover:shadow-xl hover:scale-[1.01]
