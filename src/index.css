@@ -2,14 +2,14 @@
 
 
 /* Default Light Mode */
-body {
+/* body {
   background-color: #ffffff;
   color: #000000;
   transition: all 0.3s ease;
-}
+} */
 
 /* Dark Mode */
-body.dark {
+/* body.dark {
   color: #ffffff;
   background-color: #1d1919;
-}
+} */

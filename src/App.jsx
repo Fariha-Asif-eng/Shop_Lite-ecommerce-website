@@ -93,26 +93,6 @@ function AppContent() {
   const [accountOpts, setAccountOpts] = useState(false);
   const [mobileMenuOpn, setMobileMenu] = useState(false);
 
-  // ❌ REMOVE OLD DARK MODE CODE - Using Theme Context Now
-  /*
-  const [darkMode, setDarkMode] = useState(() => {
-    const saved = localStorage.getItem('darkMode');
-    return saved === 'true';
-  });
-
-  const toggleDarkMode = () => {
-    setDarkMode(prevMode => !prevMode);
-  };
-
-  useEffect(() => {
-    localStorage.setItem("darkMode", darkMode.toString());
-    if (darkMode) {
-      document.documentElement.classList.add("dark");
-    } else {
-      document.documentElement.classList.remove("dark");
-    }
-  }, [darkMode]);
-  */
 
   return (
     <>
@@ -122,7 +102,7 @@ function AppContent() {
         </div>
       )}
       
-      <main className="w-full min-h-screen flex flex-col gap-2 dark:bg-gray-900 dark:text-white">
+      <main className="w-full min-h-screen flex flex-col gap-2">
         <Header
           btnText={openCart ? <BsCartX /> : <BsCartCheck />}
           searching={searching}

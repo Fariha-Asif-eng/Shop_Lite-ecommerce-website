@@ -11,8 +11,8 @@ function ItemDetails({ addToCart, buyNow }) {
   }
 
   return (
-    <section className="w-full h-[80vh] mt-12 relative left-0 top-0 flex place-items-center p-6">
-      <div className="flex gap-4  rounded-md w-full h-full mt-8">
+    <section className="w-full h-[80vh] bg-w pt-12 relative left-0 top-0 flex flex-col  place-items-center p-6">
+      <div className="flex flex-col lg:flex-row gap-4 place-items-center rounded-md w-full h-full mt-8">
         <img
           src={product.img}
           alt={product.title}
@@ -25,7 +25,7 @@ function ItemDetails({ addToCart, buyNow }) {
           <h3 className="text-lg text-gray-700">${product.price}</h3>
           <p className="text-sm text-gray-600">{product.detail}</p>
           </div>
-        <div className="flex justify-between gap-x-4 mx-auto w-[60%] relative bottom-0">
+        <div className="flex justify-between gap-x-4 mx-auto w-[78%] lg:w-[40%] relative bottom-0">
           <button
             onClick={() => addToCart(product)}
             className="bg-blue-500 text-white cursor-pointer p-4 w-full rounded hover:bg-blue-600 transition-colors duration-200"
