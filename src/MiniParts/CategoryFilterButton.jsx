@@ -24,7 +24,7 @@ function CategoryFilterButton({ onFilterChange }) {
   };
 
   return (
-    <div className="w-[10%] p-2 text-left rounded-md bg-white z-200 fixed top-12 left-[33%] shadow-lg">
+    <div className="max-w-[34%] p-2 text-left rounded-md bg-white z-200 fixed top-16 right-30 shadow-lg">
       {/* <div>
         <input type="checkbox" value="All" onChange={handleCheckboxChange} />
         <label>All</label>

@@ -17,7 +17,7 @@ function Hero({addToCart, products}) {
         />
         
         {/* Modern Overlay */}
-        <div className='w-full min-h-[86vh] relative rounded-2xl p-8 bg-gradient-to-br from-blue-900/40 to-purple-900/40 mx-auto flex flex-col items-center justify-center z-10 backdrop-blur-sm'>
+        <div className='w-full min-h-[86vh] relative rounded-2xl p-8 bg-gradient-to-br from-blue-900/40 to-purple-900/40 mx-auto flex flex-col items-center justify-center z-10 backdrop-blur-xs'>
           
           {/* Modern Text Design */}
           <h2 className='text-5xl md:text-6xl font-bold text-white mb-8 text-center animate-fade-in'>

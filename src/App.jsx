@@ -25,6 +25,13 @@ import Logo from "./Comp/Logo";
 import { AuthProvider, useAuth } from "./Auth/AuthContext";
 import ItemDetails from "./Comp/ItemDetails";
 
+import AccountOptions from "./Account/AccountOptions";
+import MobileMenu from "./Comp/MobileMenu";
+
+// ✅ Theme Context Import
+import { ThemeProvider, useTheme } from "./context/ThemeContext";
+
+
 function AppContent() {
   const [cartItems, setCartItems] = useState([]);
   const [categories, setCategories] = useState([]);
@@ -35,6 +42,10 @@ function AppContent() {
   const [loading, setLoading] = useState(false);
   
   const { isAuthenticated } = useAuth();
+  
+  // ✅ Use Theme Context instead of local state
+  const { theme, toggleTheme, isDark } = useTheme();
+  
   let location = useLocation();
 
   const seeDetailsFun = (ItemID)=>{
@@ -79,6 +90,30 @@ function AppContent() {
     return () => clearTimeout(timer);
   }, [location]);
 
+  const [accountOpts, setAccountOpts] = useState(false);
+  const [mobileMenuOpn, setMobileMenu] = useState(false);
+
+  // ❌ REMOVE OLD DARK MODE CODE - Using Theme Context Now
+  /*
+  const [darkMode, setDarkMode] = useState(() => {
+    const saved = localStorage.getItem('darkMode');
+    return saved === 'true';
+  });
+
+  const toggleDarkMode = () => {
+    setDarkMode(prevMode => !prevMode);
+  };
+
+  useEffect(() => {
+    localStorage.setItem("darkMode", darkMode.toString());
+    if (darkMode) {
+      document.documentElement.classList.add("dark");
+    } else {
+      document.documentElement.classList.remove("dark");
+    }
+  }, [darkMode]);
+  */
+
   return (
     <>
       {loading && (
@@ -87,7 +122,7 @@ function AppContent() {
         </div>
       )}
       
-      <main className="w-full min-h-screen flex flex-col gap-2">
+      <main className="w-full min-h-screen flex flex-col gap-2 dark:bg-gray-900 dark:text-white">
         <Header
           btnText={openCart ? <BsCartX /> : <BsCartCheck />}
           searching={searching}
@@ -95,6 +130,10 @@ function AppContent() {
           ontoggle={() => setOpenCart(!openCart)}
           currentItems={cartItems.length}
           setCateButton={() => setCateButton(!categoryButton)}
+          AccountOptBtn={() => setAccountOpts(!accountOpts)}
+          mobileMenu={() => setMobileMenu(!mobileMenuOpn)}
+          toggleDarkMode={toggleTheme} // ✅ Use toggleTheme from context
+          darkMode={isDark} // ✅ Use isDark from context
         />
 
         <Routes>
@@ -121,6 +160,19 @@ function AppContent() {
         {openCart && (
           <MyCart cartItems={cartItems} setCartItems={setCartItems} />
         )}
+
+        {accountOpts && (
+          <AccountOptions setOpts={setAccountOpts} />
+        )}
+
+        {mobileMenuOpn && (
+          <MobileMenu 
+            AccountOptBtn={() => setAccountOpts(!accountOpts)} 
+            setOpts={setMobileMenu} 
+            toggleMode={toggleTheme} // ✅ Use toggleTheme from context
+            darkMode={isDark} // ✅ Use isDark from context
+          />
+        )}
       </main>
     </>
   );
@@ -130,7 +182,10 @@ function App() {
   return (
     <BrowserRouter>
       <AuthProvider>
-        <AppContent />
+        {/* ✅ Wrap with ThemeProvider */}
+        <ThemeProvider>
+          <AppContent />
+        </ThemeProvider>
       </AuthProvider>
     </BrowserRouter>
   );
