@@ -23,6 +23,7 @@ import FeaturedQuality from "./Comp/FeaturedQuality";
 import FeaturedPro from "./Comp/FeaturedPro";
 import Logo from "./Comp/Logo";
 import { AuthProvider, useAuth } from "./Auth/AuthContext";
+import ItemDetails from "./Comp/ItemDetails";
 
 function AppContent() {
   const [cartItems, setCartItems] = useState([]);
@@ -35,6 +36,10 @@ function AppContent() {
   
   const { isAuthenticated } = useAuth();
   let location = useLocation();
+
+  const seeDetailsFun = (ItemID)=>{
+    return products.find((eachItem)=> eachItem.id === ItemID)
+  }
 
   useEffect(() => {
     let p = products;
@@ -102,7 +107,8 @@ function AppContent() {
           <Route path="/contactform" element={<Contact />} />
           <Route path="/featuredquality" element={<FeaturedQuality />} />
           <Route path="/about" element={<About />} />
-          <Route path="/shop" element={<Shop onAdd={addToCart} products={filterOutItems} />} />
+          <Route path="/shop" element={<Shop seeDetails={seeDetailsFun} onAdd={addToCart} products={filterOutItems} />} />
+          <Route path="/itemdetails/:id" element={<ItemDetails addToCart={addToCart} product={seeDetailsFun} />} />
           <Route path="/cartbox" element={<CartBox cartItems={cartItems} setCartItems={setCartItems} />} />
         </Routes>
 

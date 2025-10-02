@@ -1,10 +1,14 @@
 
 import React from "react";
 import ProBox from "./ProBox";
+import ItemDetails from "./ItemDetails";
 
-function MainBody({ addToCart, products }) {
+function MainBody({ addToCart, products, seeDetailsBtn }) {
+
+
   return (
     <div className="w-full min-h-screen bg-gradient-to-br from-blue-50 via-purple-50 to-pink-50 py-8">
+      
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Header Section */}
@@ -40,7 +44,7 @@ function MainBody({ addToCart, products }) {
               >
                 <ProBox
                   {...eachProduct}
-                  onAdd={() => addToCart(eachProduct)}
+                  onAdd={() => addToCart(eachProduct)} seeDetails={seeDetailsBtn}
                 />
               </div>
             ))
