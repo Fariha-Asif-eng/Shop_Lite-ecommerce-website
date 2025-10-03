@@ -17,7 +17,7 @@ const ProfilePage = () => {
 
   if (!user) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-blue-50 via-purple-50 to-pink-50 flex items-center justify-center">
+      <div className="min-h-screen bg-gradient-to-br from-blue-50 via-purple-500 to-pink-50 flex items-center justify-center">
         <div className="text-center">
           <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto"></div>
           <p className="mt-4 text-gray-600">Loading...</p>
@@ -27,11 +27,11 @@ const ProfilePage = () => {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-purple-50 to-pink-50 py-16">
+    <div className="min-h-screen mt-12 bg-gradient-to-br from-blue-50 via-purple-50 to-pink-50 py-16">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <div className="text-center mb-12">
-          <H2Styles h2Texts="User Profile" />
+          <h2 className='text-4xl text-gray-700 font-bold'>Profile Details</h2>
           <p className="text-gray-600 mt-4">Manage your account and view your activity</p>
         </div>
 

@@ -8,16 +8,16 @@ import FeaturedPro from './FeaturedPro';
 
 function Hero({addToCart, products}) {
   return (
-    <section className='w-full min-h-screen flex flex-col mb-16 top-18 relative overflow-hidden bg-gradient-to-br from-blue-50 via-purple-50 to-pink-50'>
+    <section className='w-full min-h-screen flex flex-col pt-14 mb-12 overflow-hidden bg-gradient-to-br from-blue-50 via-purple-50 to-pink-50'>
 
       {/* Video Hero Section - Modern Design */}
-      <div className='w-full mx-auto relative min-h-[80vh] my-4 rounded-2xl overflow-hidden shadow-2xl'>
+      <div className='w-full mx-auto relative min-h-[80vh] my-4 overflow-hidden shadow-2xl'>
         <video src={myShop} autoPlay loop muted 
           className='w-full h-full absolute top-0 left-0 object-cover z-0'
         />
         
         {/* Modern Overlay */}
-        <div className='w-full min-h-[86vh] relative rounded-2xl p-8 bg-gradient-to-br from-blue-900/40 to-purple-900/40 mx-auto flex flex-col items-center justify-center z-10 backdrop-blur-xs'>
+        <div className='w-full min-h-[86vh] relative p-8 bg-gradient-to-br from-blue-900/40 to-purple-900/40 mx-auto flex flex-col items-center justify-center z-10 backdrop-blur-xs'>
           
           {/* Modern Text Design */}
           <h2 className='text-5xl md:text-6xl font-bold text-white mb-8 text-center animate-fade-in'>

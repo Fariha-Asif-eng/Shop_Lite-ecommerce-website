@@ -4,7 +4,7 @@ import { NavLink } from 'react-router-dom';
 
 function About() {
   return (
-    <section className="min-h-screen bg-gradient-to-br from-blue-50 via-purple-50 to-pink-50 py-16">
+    <section className="min-h-screen mt-10 bg-gradient-to-br from-blue-50 via-purple-50 to-pink-50 py-16">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Header with ShopLite Logo */}
@@ -12,12 +12,12 @@ function About() {
           {/* ShopLite Logo */}
           <div className="flex justify-center items-center mb-8">
             <NavLink to={'/'} className='w-auto cursor-pointer bg-transparent flex justify-center items-center transform hover:scale-105 transition-transform duration-500'>
-              <p className='text-6xl md:text-7xl font-semibold bg-transparent text-[#fd366e]'>Shop</p> 
-              <span className='text-gray-800 animate-bounce bg-transparent ml-[-40px] mb-3 text-4xl md:text-5xl'>Lite</span>
+              <p className='text-4xl md:text-5xl font-semibold bg-transparent text-[#fd366e]'>Shop</p> 
+              <span className='text-gray-800 animate-bounce bg-transparent ml-[-40px] mb-3 text-2xl md:text-2xl'>Lite</span>
             </NavLink>
           </div>
           
-          <h1 className="text-4xl md:text-5xl font-black text-gray-800 mb-6">
+          <h1 className="text-3xl md:text-4xl font-black text-gray-800 mb-6">
             About <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">ShopLite</span>
           </h1>
           <p className="text-xl text-gray-600 leading-relaxed max-w-3xl mx-auto">

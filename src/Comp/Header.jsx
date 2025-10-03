@@ -2,9 +2,10 @@ import React from 'react'
 import Logo from './Logo';
 import CartButton from './CartButton';
 import { NavLink } from 'react-router-dom';
-import { BsFilterCircleFill } from 'react-icons/bs';
+import { BsFilterCircleFill, BsMenuApp, BsMenuButton, BsMenuButtonFill, BsMenuButtonWide } from 'react-icons/bs';
 import { useAuth } from '../Auth/AuthContext';
 import { TfiMenuAlt } from 'react-icons/tfi';
+import { AiOutlineMenu } from 'react-icons/ai';
 
 function Header({ontoggle, btnText, searching, searchItems, currentItems, setCateButton, AccountOptBtn, mobileMenu, toggleDarkMode, darkMode}) {
     const { user, logout, isAuthenticated } = useAuth();
@@ -87,7 +88,7 @@ function Header({ontoggle, btnText, searching, searchItems, currentItems, setCat
               onChange={onChange}
               type="text" 
               className='w-full bg-gray-700 border border-gray-600 rounded-lg px-3 py-2 focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-300 outline-none text-white placeholder-gray-400 text-sm' 
-              placeholder='🔍 Search...' 
+              placeholder='🔍Search...' 
             />
           </div>
           
@@ -105,7 +106,7 @@ function Header({ontoggle, btnText, searching, searchItems, currentItems, setCat
           {/* Dark Mode Toggle Button */}
           <button
             onClick={toggleDarkMode}
-            className="p-2 rounded-lg bg-gray-700 hover:bg-gray-600 transition-colors duration-300 text-gray-300 hover:text-white border border-gray-600"
+            className="p-2 rounded-lg bg-gray-700 hover:bg-gray-600 transition-colors duration-300 text-gray-300 hover:text-white border border-gray-600 cursor-pointer"
             title={darkMode ? "Switch to Light Mode" : "Switch to Dark Mode"}
           >
             {darkMode ? (
@@ -154,7 +155,7 @@ function Header({ontoggle, btnText, searching, searchItems, currentItems, setCat
           {/* Dark Mode Toggle - Mobile */}
           <button
             onClick={toggleDarkMode}
-            className="p-2 rounded-lg bg-gray-700 hover:bg-gray-600 transition-colors duration-300 text-gray-300 hover:text-white border border-gray-600"
+            className="hidden lg:block p-2 rounded-lg bg-gray-700 hover:bg-gray-600 transition-colors duration-300 text-gray-300 hover:text-white border border-gray-600"
             title={darkMode ? "Light Mode" : "Dark Mode"}
           >
             {darkMode ? (
@@ -175,7 +176,8 @@ function Header({ontoggle, btnText, searching, searchItems, currentItems, setCat
 
           {/* Mobile Menu Button */}
           <button onClick={mobileMenu}>
-            <TfiMenuAlt className='w-10 h-10 rounded-full fill-amber-50 bg-purple-700 p-[4px] cursor-pointer hover:bg-purple-500 transition-colors duration-200'/>
+            
+            <AiOutlineMenu className='w-10 h-10 rounded-md fill-amber-50 bg-purple-700 p-[4px] cursor-pointer hover:bg-purple-500 transition-colors duration-200'/>
           </button>
         </div>
       </header>

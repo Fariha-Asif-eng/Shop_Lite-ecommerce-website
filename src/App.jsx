@@ -23,11 +23,14 @@ import FeaturedQuality from "./Comp/FeaturedQuality";
 import FeaturedPro from "./Comp/FeaturedPro";
 import Logo from "./Comp/Logo";
 import { AuthProvider, useAuth } from "./Auth/AuthContext";
+import ItemDetails from "./Comp/ItemDetails";
+
 import AccountOptions from "./Account/AccountOptions";
 import MobileMenu from "./Comp/MobileMenu";
 
 // ✅ Theme Context Import
 import { ThemeProvider, useTheme } from "./context/ThemeContext";
+
 
 function AppContent() {
   const [cartItems, setCartItems] = useState([]);
@@ -44,6 +47,10 @@ function AppContent() {
   const { theme, toggleTheme, isDark } = useTheme();
   
   let location = useLocation();
+
+  const seeDetailsFun = (ItemID)=>{
+    return products.find((eachItem)=> eachItem.id === ItemID)
+  }
 
   useEffect(() => {
     let p = products;
@@ -86,26 +93,6 @@ function AppContent() {
   const [accountOpts, setAccountOpts] = useState(false);
   const [mobileMenuOpn, setMobileMenu] = useState(false);
 
-  // ❌ REMOVE OLD DARK MODE CODE - Using Theme Context Now
-  /*
-  const [darkMode, setDarkMode] = useState(() => {
-    const saved = localStorage.getItem('darkMode');
-    return saved === 'true';
-  });
-
-  const toggleDarkMode = () => {
-    setDarkMode(prevMode => !prevMode);
-  };
-
-  useEffect(() => {
-    localStorage.setItem("darkMode", darkMode.toString());
-    if (darkMode) {
-      document.documentElement.classList.add("dark");
-    } else {
-      document.documentElement.classList.remove("dark");
-    }
-  }, [darkMode]);
-  */
 
   return (
     <>
@@ -115,7 +102,7 @@ function AppContent() {
         </div>
       )}
       
-      <main className="w-full min-h-screen flex flex-col gap-2 dark:bg-gray-900 dark:text-white">
+      <main className="w-full min-h-screen flex flex-col gap-2">
         <Header
           btnText={openCart ? <BsCartX /> : <BsCartCheck />}
           searching={searching}
@@ -139,7 +126,8 @@ function AppContent() {
           <Route path="/contactform" element={<Contact />} />
           <Route path="/featuredquality" element={<FeaturedQuality />} />
           <Route path="/about" element={<About />} />
-          <Route path="/shop" element={<Shop onAdd={addToCart} products={filterOutItems} />} />
+          <Route path="/shop" element={<Shop seeDetails={seeDetailsFun} onAdd={addToCart} products={filterOutItems} />} />
+          <Route path="/itemdetails/:id" element={<ItemDetails addToCart={addToCart} product={seeDetailsFun} />} />
           <Route path="/cartbox" element={<CartBox cartItems={cartItems} setCartItems={setCartItems} />} />
         </Routes>
 

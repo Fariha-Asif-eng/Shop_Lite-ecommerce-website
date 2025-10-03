@@ -1,8 +1,16 @@
+import React, { useState } from "react";
+import { NavLink, useNavigate } from "react-router-dom";
+import ItemDetails from "./ItemDetails";
 
-import React from "react";
+function ProBox({ id, title, price, img, onAdd}) {
+  //   // if (!id)=>{ return null;}
 
-function ProBox({ id, title, price, img, onAdd }) {
+  // const [proId, setProID] = useState(null);
+  let navigateTo = useNavigate('');
   return (
+
+    <div >
+       
     <div 
       key={id} 
       className="group relative bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 overflow-hidden border border-gray-100 hover:border-transparent transform hover:-translate-y-2"
@@ -16,12 +24,21 @@ function ProBox({ id, title, price, img, onAdd }) {
         />
         
         {/* Quick Add Button Overlay */}
-        <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-all duration-500 flex items-center justify-center">
+        <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-all duration-500 flex items-center justify-center gap-[2px]">
+          <button
+            onClick={()=> navigateTo(`/itemdetails/${id}`)}
+            className="bg-white/90 backdrop-blur-sm text-gray-800 p-2 rounded-full cursor-pointer shadow-2xl opacity-0 group-hover:opacity-100 transform translate-y-4 group-hover:translate-y-0 transition-all duration-500 hover:bg-gradient-to-r hover:from-blue-500 hover:to-purple-500 hover:text-white hover:scale-110 font-semibold flex items-center space-x-2"
+          >
+            <span>See details</span>
+            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
+            </svg>
+          </button>
           <button
             onClick={onAdd}
-            className="bg-white/90 backdrop-blur-sm text-gray-800 px-4 py-3 rounded-full shadow-2xl opacity-0 group-hover:opacity-100 transform translate-y-4 group-hover:translate-y-0 transition-all duration-500 hover:bg-gradient-to-r hover:from-blue-500 hover:to-purple-500 hover:text-white hover:scale-110 font-semibold flex items-center space-x-2"
+            className="bg-white/90 backdrop-blur-sm text-gray-800 p-2 rounded-full cursor-pointer shadow-2xl opacity-0 group-hover:opacity-100 transform translate-y-4 group-hover:translate-y-0 transition-all duration-500 hover:bg-gradient-to-r hover:from-blue-500 hover:to-purple-500 hover:text-white hover:scale-110 font-semibold flex items-center space-x-2"
           >
-            <span>Quick Add</span>
+            <span>Add to cart</span>
             <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
             </svg>
@@ -56,10 +73,10 @@ function ProBox({ id, title, price, img, onAdd }) {
           {/* Add to Cart Button */}
           <button
             onClick={onAdd}
-            className="bg-gradient-to-r from-blue-500 to-purple-500 text-white px-4 py-2.5 rounded-xl hover:from-blue-600 hover:to-purple-600 transition-all duration-300 transform hover:scale-105 font-semibold text-sm shadow-md hover:shadow-lg relative overflow-hidden group/btn"
+            className="bg-gradient-to-r from-blue-500 to-purple-500 text-white px-4 cursor-pointer py-2.5 rounded-xl hover:from-blue-600 hover:to-purple-600 transition-all duration-300 transform hover:scale-105 font-semibold text-sm shadow-md hover:shadow-lg relative overflow-hidden group/btn"
           >
             <span className="relative z-10 flex items-center space-x-1">
-              <span>Add to Cart</span>
+              <span>Buy Now</span>
               <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
               </svg>
@@ -73,7 +90,12 @@ function ProBox({ id, title, price, img, onAdd }) {
       <div className="absolute inset-0 rounded-2xl bg-gradient-to-r from-blue-400 to-purple-400 opacity-0 group-hover:opacity-100 transition-opacity duration-500 -z-10 blur-md"></div>
       <div className="absolute inset-[1px] rounded-2xl bg-white -z-10"></div>
     </div>
+    
+    </div>
+    
+
   );
+ 
 }
 
 export default ProBox;
