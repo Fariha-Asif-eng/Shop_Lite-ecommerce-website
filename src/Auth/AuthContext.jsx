@@ -1,4 +1,6 @@
-import React, { createContext, useState, useContext, useEffect } from 'react';
+// src/authcontext.js
+import React, { createContext, useState, useContext, useEffect } from "react";
+import { account } from "../appwrite"; // 👈 apni appwrite.js ka path
 
 const AuthContext = createContext();
 
@@ -8,20 +10,14 @@ export const AuthProvider = ({ children }) => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    // Check if user is logged in on app start
+    // Jab app start ho to backend se check kare
     const checkAuthStatus = async () => {
       try {
-        const token = localStorage.getItem('authToken');
-        const userData = localStorage.getItem('userData');
-        
-        console.log("Auth check - Token:", token, "UserData:", userData); // Debug
-        
-        if (token && userData) {
-          setUser(JSON.parse(userData));
-          setIsAuthenticated(true);
-        }
+        const currentUser = await account.get();
+        setUser(currentUser);
+        setIsAuthenticated(true);
       } catch (error) {
-        console.error('Auth check error:', error);
+        console.log("No active session:", error.message);
       } finally {
         setLoading(false);
       }
@@ -30,41 +26,61 @@ export const AuthProvider = ({ children }) => {
     checkAuthStatus();
   }, []);
 
-  const login = (userData, token) => {
-    console.log("Login function called:", userData); // Debug
-    setUser(userData);
-    setIsAuthenticated(true);
-    localStorage.setItem('userData', JSON.stringify(userData));
-    localStorage.setItem('authToken', token);
-    console.log("User logged in and saved to localStorage"); // Debug
+  // ✅ Register
+  const register = async (email, password, name) => {
+    try {
+      await account.create("unique()", email, password, name);
+      await account.createEmailSession(email, password);
+      const currentUser = await account.get();
+      setUser(currentUser);
+      setIsAuthenticated(true);
+      // reload page after signup
+      window.location.reload();
+    } catch (error) {
+      console.error("Register error:", error.message);
+      throw error;
+    }
   };
 
-  const register = (userData, token) => {
-    console.log("Register function called:", userData); // Debug
-    setUser(userData);
-    setIsAuthenticated(true);
-    localStorage.setItem('userData', JSON.stringify(userData));
-    localStorage.setItem('authToken', token);
-    console.log("User registered and saved to localStorage"); // Debug
+  // ✅ Login
+  const login = async (email, password) => {
+    try {
+      await account.createEmailSession(email, password);
+      const currentUser = await account.get();
+      setUser(currentUser);
+      setIsAuthenticated(true);
+      // reload page after login
+      window.location.reload();
+    } catch (error) {
+      console.error("Login error:", error.message);
+      throw error;
+    }
   };
 
-  const logout = () => {
-    console.log("Logout function called"); // Debug
-    setUser(null);
-    setIsAuthenticated(false);
-    localStorage.removeItem('userData');
-    localStorage.removeItem('authToken');
+  // ✅ Logout
+  const logout = async () => {
+    try {
+      await account.deleteSession("current");
+      setUser(null);
+      setIsAuthenticated(false);
+      // reload page after logout
+      window.location.reload();
+    } catch (error) {
+      console.error("Logout error:", error.message);
+    }
   };
 
   return (
-    <AuthContext.Provider value={{
-      user,
-      isAuthenticated,
-      loading,
-      login,
-      register,
-      logout
-    }}>
+    <AuthContext.Provider
+      value={{
+        user,
+        isAuthenticated,
+        loading,
+        login,
+        register,
+        logout,
+      }}
+    >
       {children}
     </AuthContext.Provider>
   );
@@ -73,7 +89,7 @@ export const AuthProvider = ({ children }) => {
 export const useAuth = () => {
   const context = useContext(AuthContext);
   if (!context) {
-    throw new Error('useAuth must be used within an AuthProvider');
+    throw new Error("useAuth must be used within an AuthProvider");
   }
   return context;
 };
