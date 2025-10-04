@@ -1,9 +1,10 @@
 import React from 'react'
 import ProBox from './ProBox';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import H2Styles from '../MiniParts/H2Styles';
 
 function FeaturedPro({addToCart}) {
+  let navigateTo = useNavigate()
   const products = [
     { 
       id: 1, 
@@ -96,8 +97,8 @@ function FeaturedPro({addToCart}) {
       <div className="absolute inset-0 bg-gradient-to-br from-blue-50 via-purple-50 to-pink-50 animate-gradient-x"></div>
       
       {/* Animated Floating Elements */}
-      <div className="absolute top-10 left-5 w-3 h-3 bg-blue-400 rounded-full animate-float"></div>
-      <div className="absolute top-20 right-10 w-2 h-2 bg-purple-400 rounded-full animate-float delay-1000"></div>
+      <div className="absolute top-10 left-8 w-6 h-6 rounded-r-4xl rounded-t-xl bg-blue-400 rounded-full animate-float"></div>
+      <div className="absolute top-20 right-10 w-4 h-4 bg-purple-400 rounded-full rounded-l-2xl rounded-b-lg animate-float delay-100"></div>
       <div className="absolute bottom-20 left-20 w-4 h-4 bg-pink-300 rounded-full animate-float delay-500"></div>
       <div className="absolute top-1/3 right-20 w-3 h-3 bg-cyan-300 rounded-full animate-bounce-slow"></div>
       <div className="absolute bottom-1/4 left-1/4 w-2 h-2 bg-yellow-300 rounded-full animate-pulse-slow"></div>
@@ -167,7 +168,7 @@ function FeaturedPro({addToCart}) {
                     {/* Quick Add Button */}
                     <button
                       onClick={() => addToCart(each)}
-                      className="absolute top-3 right-3 bg-white/90 backdrop-blur-sm text-gray-800 p-2 rounded-full shadow-lg opacity-0 group-hover:opacity-100 transform translate-y-2 group-hover:translate-y-0 transition-all duration-300 hover:scale-110"
+                      className="absolute top-3 right-3 cursor-pointer bg-white/90 backdrop-blur-sm text-gray-800 p-2 rounded-full shadow-lg opacity-0 group-hover:opacity-100 transform translate-y-2 group-hover:translate-y-0 transition-all duration-300 hover:scale-110"
                     >
                       <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
@@ -200,10 +201,13 @@ function FeaturedPro({addToCart}) {
                       
                       {/* Add to Cart Button */}
                       <button
-                        onClick={() => addToCart(each)}
-                        className={`bg-gradient-to-r ${each.color} text-white px-4 py-2.5 rounded-xl hover:shadow-lg transition-all duration-300 transform hover:scale-105 font-semibold text-sm shadow-md`}
+                          // {navigateTo('/orderdetail')}
+                        onClick={() => window.location.href = `orderdetail${each.id}`
+
+                        }
+                        className={`bg-gradient-to-r ${each.color} text-white px-4 py-2.5 rounded-xl hover:shadow-lg transition-all duration-300 transform cursor-pointer hover:scale-105 font-semibold text-sm shadow-md`}
                       >
-                        Add to Cart
+                        Buy Now
                       </button>
                     </div>
                   </div>

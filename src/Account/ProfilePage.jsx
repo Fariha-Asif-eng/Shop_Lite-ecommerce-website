@@ -3,6 +3,7 @@ import { useAuth } from '../Auth/AuthContext';
 import H2Styles from '../MiniParts/H2Styles';
 import { useState, useEffect } from 'react';
 import { NavLink } from 'react-router-dom';
+import OrderHistory from '../Account/OrderHistory';
 
 const ProfilePage = () => {
   const { user } = useAuth();
@@ -164,7 +165,8 @@ const ProfilePage = () => {
           <h3 className="text-2xl font-bold bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent mb-6">
             Order History
           </h3>
-          <div className="text-center py-8">
+          <OrderHistory/>
+          {/* <div className="text-center py-8">
             <div className="text-6xl mb-4">📦</div>
             <p className="text-gray-500 text-lg">Your order history will appear here...</p>
             <NavLink 
@@ -173,7 +175,7 @@ const ProfilePage = () => {
             >
               Start Shopping
             </NavLink>
-          </div>
+          </div> */}
         </div>
       </div>
     </div>

@@ -53,15 +53,25 @@ function ProBox({ id, title, price, img, onAdd}) {
       
       {/* Content */}
       <div className="p-5">
-        {/* Product Title */}
-        <h2 className="font-bold text-gray-800 mb-3 line-clamp-2 group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-blue-600 group-hover:to-purple-600 transition-all duration-500 leading-tight">
+      <div className="mb-8 py-4 flex justify-around w-full">
+        {/* Product Title and price*/}
+        <h2 className="font-bold absolute left-4 text-gray-800 mb-3 line-clamp-2 group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-blue-600 group-hover:to-purple-600 transition-all duration-500 leading-tight">
           {title}
         </h2>
+        <div className="lg:hidden absolute right-4 ">
+            <span className="text-2xl font-black bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+              ${price}
+            </span>
+            <span className="text-sm text-gray-500 line-through opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+              ${price + 15}
+            </span>
+          </div>
+          </div>
         
-        {/* Bottom Section */}
+        {/* Bottom Part */}
         <div className="flex items-center justify-between mt-auto">
           {/* Price Display */}
-          <div className="flex items-baseline space-x-2">
+          <div className=" hidden lg:block">
             <span className="text-2xl font-black bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
               ${price}
             </span>
@@ -70,9 +80,17 @@ function ProBox({ id, title, price, img, onAdd}) {
             </span>
           </div>
           
-          {/* Add to Cart Button */}
           <button
-            onClick={onAdd}
+            onClick={()=> navigateTo(`/itemdetails/${id}`)}
+            className="lg:hidden bg-gradient-to-r from-blue-500 to-purple-500 text-white px-2 cursor-pointer py-2.5 rounded-xl hover:from-blue-600 hover:to-purple-600 transition-all duration-300 transform hover:scale-105 font-semibold text-sm shadow-md hover:shadow-lg relative overflow-hidden group/btn"
+          >
+            <span>See details</span>
+            {/* <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
+            </svg> */}
+          </button>
+          <NavLink
+            to={`/orderdetails/${id}`}
             className="bg-gradient-to-r from-blue-500 to-purple-500 text-white px-4 cursor-pointer py-2.5 rounded-xl hover:from-blue-600 hover:to-purple-600 transition-all duration-300 transform hover:scale-105 font-semibold text-sm shadow-md hover:shadow-lg relative overflow-hidden group/btn"
           >
             <span className="relative z-10 flex items-center space-x-1">
@@ -82,7 +100,7 @@ function ProBox({ id, title, price, img, onAdd}) {
               </svg>
             </span>
             <div className="absolute inset-0 bg-gradient-to-r from-purple-500 to-blue-500 opacity-0 group-hover/btn:opacity-100 transition-opacity duration-300"></div>
-          </button>
+          </NavLink>
         </div>
       </div>
 

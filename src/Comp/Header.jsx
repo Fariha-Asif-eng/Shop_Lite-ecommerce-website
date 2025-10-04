@@ -139,7 +139,7 @@ function Header({ontoggle, btnText, searching, searchItems, currentItems, setCat
                 to={'/login'} 
                 className="cursor-pointer bg-gradient-to-r from-blue-500 to-purple-500 text-white px-4 py-2 rounded-lg hover:from-blue-600 hover:to-purple-600 transition-all duration-300 text-sm font-semibold border border-blue-400 shadow-lg"
               >
-                Sign in
+                Login
               </NavLink>
             </div>
           )}

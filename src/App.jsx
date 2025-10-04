@@ -30,6 +30,8 @@ import MobileMenu from "./Comp/MobileMenu";
 
 // ✅ Theme Context Import
 import { ThemeProvider, useTheme } from "./context/ThemeContext";
+import OrderDetails from "./Comp/OrderDetails";
+import OrderHistory from "./Account/OrderHistory";
 
 
 function AppContent() {
@@ -129,6 +131,8 @@ function AppContent() {
           <Route path="/shop" element={<Shop seeDetails={seeDetailsFun} onAdd={addToCart} products={filterOutItems} />} />
           <Route path="/itemdetails/:id" element={<ItemDetails addToCart={addToCart} product={seeDetailsFun} />} />
           <Route path="/cartbox" element={<CartBox cartItems={cartItems} setCartItems={setCartItems} />} />
+          <Route path="/orderdetails/:id" element={<OrderDetails/>}/>
+          <Route path="/yourorders" element={<OrderHistory/>}/>
         </Routes>
 
         <Footer />
@@ -158,17 +162,5 @@ function AppContent() {
   );
 }
 
-function App() {
-  return (
-    <BrowserRouter>
-      <AuthProvider>
-        {/* ✅ Wrap with ThemeProvider */}
-        <ThemeProvider>
-          <AppContent />
-        </ThemeProvider>
-      </AuthProvider>
-    </BrowserRouter>
-  );
-}
 
-export default App;
+export default AppContent;

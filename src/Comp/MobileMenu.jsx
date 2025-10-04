@@ -3,14 +3,9 @@ import { NavLink } from 'react-router-dom'
 import { useAuth } from '../Auth/AuthContext'
 import { RiProfileLine } from 'react-icons/ri';
 import { MdAccountCircle } from 'react-icons/md';
-function MobileMenu({ setOpts, AccountOptBtn, toggleMode, darkMode }) {
-  const { user, logout, isAuthenticated } = useAuth();
+function MobileMenu({ setOpts, toggleMode, darkMode }) {
+  const { logout, isAuthenticated } = useAuth();
 
-  // const onChange = (a)=>{
-  //   searchItems(a.target.value)
-  //   console.log(searchItems);
-  // }
-  //Commits
   return (
     <div className='min-w-1/3 min-h-[100vh] md:hidden fixed top-0 left-0 rounded-md p-4 pt-18 flex flex-col gap-y-2 z-90 bg-gradient-to-b from-gray-950/80 to-gray-700'>
       <div className="flex items-center gap-3">
@@ -34,7 +29,7 @@ function MobileMenu({ setOpts, AccountOptBtn, toggleMode, darkMode }) {
               to={'/login'}
               className="cursor-pointer bg-gradient-to-r from-blue-500 to-purple-500 text-white px-4 py-2 rounded-lg hover:from-blue-600 hover:to-purple-600 transition-all duration-300 text-sm font-semibold border border-blue-400 shadow-lg"
             >
-              Sign in
+              Login
             </NavLink>
           </div>
         )

@@ -20,56 +20,26 @@ function Login() {
   });
 
   const handleLogin = async (e) => {
-    // ✅ Prevent default form submission
-    if (e) e.preventDefault();
-    
-    if (!email || !pass) {
-      toast.warning("Fill all fields.");
-      return;
-    }
+  e.preventDefault();
+  
+  if (!email || !pass) {
+    toast.warning("Fill all fields.");
+    return;
+  }
 
-    setLoading(true);
-    try {
-      console.log("Attempting login with:", email); 
-      
-      // Appwrite login
-      let theUser = await account.createEmailPasswordSession(email, pass);
-      
-      if (theUser) {
-        console.log("Login successful:", theUser); 
-        
-        // Get user details from Appwrite
-        const userDetails = await account.get();
-        console.log("User details from Appwrite:", userDetails);        
-        // Fetch user data for context
-        const userData = {
-          id: userDetails.$id,
-          name: userDetails.name || email.split('@')[0],
-          email: userDetails.email,
-          role: 'customer'
-        };
+  setLoading(true);
+  try {
+    await login(email, pass); // using AuthContext's login function
+    toast.success("Logged in Successfully!");
+    navigate("/", { replace: true });
+  } catch (error) {
+    console.error("Login error:", error);
+    toast.error(error.message || "Login failed! Please check your credentials.");
+  } finally {
+    setLoading(false);
+  }
+};
 
-        console.log("Fetched user data:", userData);
-      
-        login(userData, theUser.secret);
-        
-        toast.success("Logged in Successfully!");
-        console.log("User logged in and context updated"); 
-
-        setTimeout(() => {
-          console.log("Navigating to home page...");          navigate("/", { replace: true });
-        }, 100);
-        
-      }
-    } catch (error) {
-      console.error("Login error:", error);
-      toast.error(error.message || "Login failed! Please check your credentials.");
-    } finally {
-      setLoading(false);
-    }
-  };
-
-  // Check authentication status
   console.log("Login component - isAuthenticated:", isAuthenticated);
 
   return (
