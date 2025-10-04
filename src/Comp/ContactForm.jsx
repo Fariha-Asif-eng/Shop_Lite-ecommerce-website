@@ -103,10 +103,10 @@ function Contact() {
   };
 
   return (
-    <section className="min-h-screen bg-gradient-to-br from-blue-50 via-purple-50 to-pink-50 py-16">
+    <section className="min-h-screen bg-gradient-to-br from-blue-50 via-purple-50 to-pink-50 mt-10 py-16">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-12">
-          <h1 className="text-5xl md:text-6xl font-black bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 bg-clip-text text-transparent mb-6">
+        <div className="text-center mb-8">
+          <h1 className="text-3xl md:text-4xl font-black bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 bg-clip-text text-transparent mb-2">
             Contact Us
           </h1>
           <p className="text-xl text-gray-600 leading-relaxed">
@@ -114,7 +114,7 @@ function Contact() {
           </p>
         </div>
 
-        <div className="bg-white/80 backdrop-blur-sm rounded-2xl shadow-xl p-8 border border-white/20">
+        <div className="bg-white/80 backdrop-blur-sm rounded-2xl shadow-xl px-4 py-6 border border-white/20">
           <div className="grid md:grid-cols-2 gap-8">
             <div className="space-y-6">
               <div>
@@ -128,11 +128,11 @@ function Contact() {
                   </p>
                   <p className="flex items-center space-x-2">
                     <span>📞</span>
-                    <span>+1 (555) 123-4567</span>
+                    <span>+92315 9878071</span>
                   </p>
                   <p className="flex items-center space-x-2">
                     <span>📍</span>
-                    <span>123 Commerce St, City, State</span>
+                    <span>PakhtunKhwa, Pakistan.</span>
                   </p>
                 </div>
               </div>

@@ -35,7 +35,7 @@ export const AuthProvider = ({ children }) => {
       setUser(currentUser);
       setIsAuthenticated(true);
       // reload page after signup
-      window.location.reload();
+      // window.location.reload();
     } catch (error) {
       console.error("Register error:", error.message);
       throw error;
@@ -45,12 +45,12 @@ export const AuthProvider = ({ children }) => {
   // ✅ Login
   const login = async (email, password) => {
     try {
-      await account.createEmailSession(email, password);
+      await account.createEmailPasswordSession(email, password);
       const currentUser = await account.get();
       setUser(currentUser);
       setIsAuthenticated(true);
       // reload page after login
-      window.location.reload();
+      // window.location.reload();
     } catch (error) {
       console.error("Login error:", error.message);
       throw error;
@@ -64,7 +64,7 @@ export const AuthProvider = ({ children }) => {
       setUser(null);
       setIsAuthenticated(false);
       // reload page after logout
-      window.location.reload();
+      // window.location.reload();
     } catch (error) {
       console.error("Logout error:", error.message);
     }

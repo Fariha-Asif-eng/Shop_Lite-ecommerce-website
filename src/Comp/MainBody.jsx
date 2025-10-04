@@ -2,27 +2,59 @@
 import React from "react";
 import ProBox from "./ProBox";
 import ItemDetails from "./ItemDetails";
+import { motion } from "framer-motion";
 
 function MainBody({ addToCart, products, seeDetailsBtn }) {
+
+const containerVariants = {
+  hidden: { opacity: 0 },
+  show: {
+    opacity: 1,
+    transition: { staggerChildren: 0.2 },
+  },
+};
+
+const itemVariants = {
+  hidden: { opacity: 0, y: 20 },
+  show: { opacity: 1, y: 0 },
+};
 
 
   return (
 
-    <main className="w-full min-h-screen bg-gradient-to-br from-blue-50 via-purple-50 to-pink-50 py-8">
-      
-     {/* 2nd div */}
-    {/* <div className="w-full min-h-screen dark:bg-amber-900 bg-gradient-to-br from-blue-50 via-purple-50 to-pink-50 py-8"> */}
+    <motion.main 
+    viewport={{once: true}}
+    variants={containerVariants}
+    initial='hidden' whileInView={'show'}
+    className="w-full min-h-screen bg-gradient-to-br from-blue-50 via-purple-50 to-pink-50 py-8">
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Header Section */}
         <div className="text-center mb-8">
-          <h1 className="text-4xl md:text-5xl font-black text-gray-800 mb-4">
-            Our <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">Products</span>
-          </h1>
-          <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+          <motion.h1 
+          initial={{ opacity: 0, y: 10 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.9 }}
+      // viewport={{ once: true }}
+      className="text-3xl md:text-4xl font-black text-gray-800 mb-4">
+            Our <span
+            initial={{ width: 0 }}
+          whileInView={{ width: "100%" }}
+          transition={{ duration: 0.7, delay: 0.3 }}
+
+            className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">Products</span>
+          </motion.h1>
+
+          <motion.p
+          initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
+        transition={{ duration: 0.7, delay: 0.3 }}
+        // viewport={{once:true}}
+
+           className="text-lg text-gray-600 max-w-2xl mx-auto">
             Discover amazing products with great deals and premium quality
-          </p>
+          </motion.p>
         </div>
 
         {/* Products Count */}
@@ -36,10 +68,13 @@ function MainBody({ addToCart, products, seeDetailsBtn }) {
         </div>
 
         {/* Products Grid */}
-        <div className="w-full grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 ">
+        <div 
+ 
+        className="w-full grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 ">
           {products.length > 0 ? (
             products.map((eachProduct) => (
-              <div 
+              <motion.div 
+              variants={itemVariants}
                 key={eachProduct.id}
                 className="animate-fade-in"
                 style={{
@@ -50,7 +85,7 @@ function MainBody({ addToCart, products, seeDetailsBtn }) {
                   {...eachProduct}
                   onAdd={() => addToCart(eachProduct)} seeDetails={seeDetailsBtn}
                 />
-              </div>
+              </motion.div>
             ))
           ) : (
             /* No Products Found State */
@@ -93,7 +128,7 @@ function MainBody({ addToCart, products, seeDetailsBtn }) {
     {/* </div> 2nd div */}
 
 
-    </main> //Main Div
+    </motion.main> //Main Div
   );
 }
 
