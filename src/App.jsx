@@ -27,6 +27,7 @@ import ItemDetails from "./Comp/ItemDetails";
 
 import AccountOptions from "./Account/AccountOptions";
 import MobileMenu from "./Comp/MobileMenu";
+import { AnimatePresence, motion } from "framer-motion";
 
 // ✅ Theme Context Import
 import { ThemeProvider, useTheme } from "./context/ThemeContext";
@@ -94,7 +95,11 @@ function AppContent() {
 
   const [accountOpts, setAccountOpts] = useState(false);
   const [mobileMenuOpn, setMobileMenu] = useState(false);
-
+  const pageVariants = {
+    initial: { opacity: 0, y: 15 },
+    animate: { opacity: 1, y: 0 },
+    exit: { opacity: 0, y: -15 },
+  };
 
   return (
     <>
@@ -117,6 +122,16 @@ function AppContent() {
           toggleDarkMode={toggleTheme} // ✅ Use toggleTheme from context
           darkMode={isDark} // ✅ Use isDark from context
         />
+         <AnimatePresence mode="wait">
+          <motion.div
+            key={location.pathname}
+            variants={pageVariants}
+            initial="initial"
+            animate="animate"
+            exit="exit"
+            transition={{ duration: 0.4 }}
+            className="flex-1"
+          >
 
         <Routes>
           <Route path="/" element={<Hero addToCart={addToCart} />} />
@@ -134,7 +149,8 @@ function AppContent() {
           <Route path="/orderdetails/:id" element={<OrderDetails/>}/>
           <Route path="/yourorders" element={<OrderHistory/>}/>
         </Routes>
-
+ </motion.div>
+        </AnimatePresence>
         <Footer />
         
         {categoryButton && (

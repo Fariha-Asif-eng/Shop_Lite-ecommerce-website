@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import ItemDetails from "./ItemDetails";
+import { motion } from "framer-motion";
 
 function ProBox({ id, title, price, img, onAdd}) {
   //   // if (!id)=>{ return null;}
@@ -30,9 +31,22 @@ function ProBox({ id, title, price, img, onAdd}) {
             className="bg-white/90 backdrop-blur-sm text-gray-800 p-2 rounded-full cursor-pointer shadow-2xl opacity-0 group-hover:opacity-100 transform translate-y-4 group-hover:translate-y-0 transition-all duration-500 hover:bg-gradient-to-r hover:from-blue-500 hover:to-purple-500 hover:text-white hover:scale-110 font-semibold flex items-center space-x-2"
           >
             <span>See details</span>
-            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
-            </svg>
+
+             <motion.svg
+                        className="w-6 h-6"
+                        fill="none"
+                        stroke="currentColor"
+                        strokeWidth={2}
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        viewBox="0 0 24 24"
+                        whileHover={{ x: 3 }}   // 👈 Arrow slides slightly right on hover
+    transition={{ type: "spring", stiffness: 300 }}
+                      >
+                        <path d="M5 12h14" /> //X-axis line
+                        <path d="M12 5l7 7-7 7" />       //Arrow head
+                      </motion.svg>
+
           </button>
           <button
             onClick={onAdd}
