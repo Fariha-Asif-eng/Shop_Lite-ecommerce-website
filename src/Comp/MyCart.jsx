@@ -1,6 +1,6 @@
 import { useAuth } from '../Auth/AuthContext';
 
-function MyCart({ cartItems, setCartItems }) {
+function MyCart({ cartItems, setCartItems, darkMode }) {
   const { user, isAuthenticated } = useAuth();
 
   const upQty = (id, d) => {
@@ -35,13 +35,13 @@ function MyCart({ cartItems, setCartItems }) {
 
   if (!isAuthenticated) {
     return (
-      <div className="w-[30%] bg-white shadow-lg h-[88vh] mr-2 top-16 rounded-md p-2 right-0 fixed flex flex-col z-101">
+      <div className={`${darkMode ? 'bg-gradient-to-t from-[#3c3f88cb] via-[#0B1059] to-[#3c3f88cb] text-gray-100' : 'bg-gradient-to-br from-blue-200 via-purple-200 to-pink-300 text-gray-500'} min-w-[50%] sm:w-[30%] shadow-lg h-[88vh] mr-2 top-16 rounded-md p-2 right-0 fixed flex flex-col z-101`}>
         <div className="flex-1 flex flex-col items-center justify-center p-4">
           <div className="text-center">
-            <h3 className="text-lg font-semibold text-gray-700 mb-4">
+            <h3 className="text-lg font-semibold  mb-4">
               Please Login to View Cart
             </h3>
-            <p className="text-gray-500 mb-6">
+            <p className=" mb-6">
               You need to be logged in to access your shopping cart.
             </p>
             <a 
@@ -57,7 +57,7 @@ function MyCart({ cartItems, setCartItems }) {
   }
 
   return (
-    <div className="w-[30%] bg-white shadow-lg h-[88vh] mr-2 top-16 rounded-md p-2 right-0 fixed flex flex-col z-101">
+    <div className={` min-w-[50%] sm:w-[30%] shadow-lg h-[88vh] mr-2 top-16 rounded-md  p-1 md:p-2 right-0 fixed flex flex-col z-101 ${darkMode ? 'text-gray-100 bg-gradient-to-r from-[#0B1059] to-[#3c3f88cb]' : 'bg-gradient-to-r from-blue-200 to-pink-200 via-purple-200 text-gray-800'}`}>
       {/* User welcome message */}
       <div className="p-3 bg-blue-50 rounded-md mb-3">
         <p className="text-sm text-blue-700">
@@ -65,9 +65,9 @@ function MyCart({ cartItems, setCartItems }) {
         </p>
       </div>
 
-      <div className="flex-1 overflow-y-auto p-4 space-y-3">
+      <div className="flex-1 overflow-y-auto p-1 md:p-4 space-y-3">
         {cartItems.length === 0 ? (
-          <div className="text-center text-gray-500 py-8">
+          <div className="text-center py-8">
             <p className="mb-2">Your cart is empty</p>
             <p className="text-sm">Start shopping to add items!</p>
           </div>
@@ -75,14 +75,14 @@ function MyCart({ cartItems, setCartItems }) {
           cartItems.map((item) => (
             <div
               key={item.id}
-              className="flex gap-3 items-center bg-white shadow rounded p-2"
+              className={`${darkMode ? 'bg-[#1e205a] text-gray-100' : 'bg-gray-200 text-gray-800'} flex gap-1 md:gap-3 items-center shadow rounded p-1 md:p-2`}
             >
               <img
                 src={item.img}
                 alt={item.title}
                 className="w-12 h-12 rounded"
               />
-              <div className="flex-1">
+              <div className="flex-1 text-sm md:text-lg">
                 <h3 className="font-semibold">{item.title}</h3>
                 <span>${item.price}</span>
               </div>

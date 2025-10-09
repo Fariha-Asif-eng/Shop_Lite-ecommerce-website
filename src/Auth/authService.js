@@ -1,30 +1,23 @@
-import { account, login, signup, logout, getCurrentUser } from './Config';
+import { account } from '../appwrite';
 
 export const authService = {
-  // Login function with Appwrite
+
   async login(email, password) {
     try {
       console.log('Appwrite login attempt for:', email);
       
-      // Appwrite login
-      const session = await login(email, password);
-      
-      // Get user details
-      const user = await getCurrentUser();
-      
-      console.log('Appwrite login successful:', user);
-      
-      return { 
-        success: true, 
-        user: {
+      const session = await account.createEmailPasswordSession(email, password);
+      const user = await account.get();
+      return {
+        user:{
           id: user.$id,
           name: user.name,
           email: user.email,
-          role: 'customer'
-        }, 
-        token: session.secret // Appwrite session secret as token
-      };
-    } catch (error) {
+          role: 'Customer'
+        },
+        token: session.secret,
+      }
+     } catch (error) {
       console.error('Appwrite login error:', error);
       return { 
         success: false, 
@@ -33,58 +26,34 @@ export const authService = {
     }
   },
 
-  // Register function with Appwrite
-  async register(userData) {
+
+  async register(email, password, name){
     try {
-      console.log('Appwrite registration attempt for:', userData);
-      
-      // Appwrite signup
-      const newUser = await signup(
-        userData.email, 
-        userData.password, 
-        userData.name
-      );
-      
-      console.log('Appwrite registration successful:', newUser);
-      
-      // Auto login after registration
-      const session = await login(userData.email, userData.password);
-      const user = await getCurrentUser();
-      
-      return { 
-        success: true, 
-        user: {
-          id: user.$id,
-          name: user.name,
-          email: user.email,
-          role: 'customer'
-        },
-        token: session.secret
-      };
+      await account.create('unique()', email, password, name);
+      return {success: true}
     } catch (error) {
-      console.error('Appwrite registration error:', error);
-      return { 
-        success: false, 
-        message: error.message || 'Registration failed' 
-      };
+      console.log('Failed to create account!', error);
+      return {success: false}
     }
   },
-
-  // Logout function with Appwrite
+  
   async logout() {
     try {
-      await logout();
+      await account.deleteSession('current')
       console.log('Appwrite logout successful');
     } catch (error) {
       console.error('Appwrite logout error:', error);
     }
   },
 
-  // Check current user
   async getCurrentUser() {
     try {
-      const user = await getCurrentUser();
-      return user;
+      const user = await account.get();
+      return {
+        id: user.$id,
+        name: user.name,
+        email: user.email,
+      }
     } catch (error) {
       console.error('Get current user error:', error);
       return null;
