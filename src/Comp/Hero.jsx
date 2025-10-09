@@ -5,10 +5,17 @@ import myShop from '../assets/Myshop.mp4'
 import Contact from './ContactForm';
 import FeaturedQuality from './FeaturedQuality';
 import FeaturedPro from './FeaturedPro';
+import { useTheme } from '../context/ThemeContext';
 
 function Hero({addToCart, products}) {
+  const { isDark } = useTheme();
+
   return (
-    <section className='w-full min-h-screen flex flex-col pt-14 mb-12 overflow-hidden bg-gradient-to-br from-blue-50 via-purple-50 to-pink-50'>
+    <section className={`w-full min-h-screen flex flex-col pt-14 mb-12 overflow-hidden transition-all duration-500 ${
+      isDark 
+        ? 'bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900' 
+        : 'bg-gradient-to-br from-blue-50 via-purple-50 to-pink-50'
+    }`}>
 
       {/* Video Hero Section - Modern Design */}
       <div className='w-full mx-auto relative min-h-[80vh] my-4 overflow-hidden shadow-2xl'>
@@ -17,7 +24,11 @@ function Hero({addToCart, products}) {
         />
         
         {/* Modern Overlay */}
-        <div className='w-full min-h-[86vh] relative p-8 bg-gradient-to-br from-blue-900/40 to-purple-900/40 mx-auto flex flex-col items-center justify-center z-10 backdrop-blur-xs'>
+        <div className={`w-full min-h-[86vh] relative p-8 mx-auto flex flex-col items-center justify-center z-10 backdrop-blur-xs ${
+          isDark 
+            ? 'bg-gradient-to-br from-gray-900/60 to-purple-900/40' 
+            : 'bg-gradient-to-br from-blue-900/40 to-purple-900/40'
+        }`}>
           
           {/* Modern Text Design */}
           <h2 className='text-5xl md:text-6xl font-bold text-white mb-8 text-center animate-fade-in'>
@@ -45,7 +56,11 @@ function Hero({addToCart, products}) {
             </NavLink>
             <NavLink 
               to={'/about'} 
-              className='bg-white/20 backdrop-blur-sm text-white border border-white/30 px-8 py-4 rounded-2xl font-bold text-lg hover:bg-white/30 transition-all duration-300 transform hover:scale-105 shadow-lg text-center'
+              className={`px-8 py-4 rounded-2xl font-bold text-lg transition-all duration-300 transform hover:scale-105 shadow-lg text-center ${
+                isDark 
+                  ? 'bg-gray-800/60 backdrop-blur-sm text-white border border-gray-600 hover:bg-gray-700/60' 
+                  : 'bg-white/20 backdrop-blur-sm text-white border border-white/30 hover:bg-white/30'
+              }`}
             >
               Learn More
             </NavLink>
@@ -54,38 +69,84 @@ function Hero({addToCart, products}) {
       </div>
 
       {/* About Section - Modern Design */}
-      <section className="my-8 text-center w-full min-h-[60vh] py-16 px-6 bg-gradient-to-br from-white to-blue-50 rounded-2xl mx-4 border border-white/50 shadow-lg">
+      <section className={`my-8 text-center w-full min-h-[60vh] py-16 px-6 rounded-2xl mx-4 border shadow-lg transition-all duration-500 ${
+        isDark 
+          ? 'bg-gradient-to-br from-gray-800 to-gray-900 border-gray-700' 
+          : 'bg-gradient-to-br from-white to-blue-50 border-white/50'
+      }`}>
         <div className="max-w-4xl mx-auto">
-          <h2 className="text-4xl md:text-5xl font-black bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent mb-8">
+          <h2 className={`text-4xl md:text-5xl font-black bg-gradient-to-r bg-clip-text text-transparent mb-8 ${
+            isDark 
+              ? 'from-blue-400 to-purple-400' 
+              : 'from-blue-600 to-purple-600'
+          }`}>
             About ShopLite
           </h2>
-          <p className="text-lg md:text-xl text-gray-700 leading-relaxed mb-8">
+          <p className={`text-lg md:text-xl leading-relaxed mb-8 ${
+            isDark ? 'text-gray-300' : 'text-gray-700'
+          }`}>
             ShopLite is a demo e-commerce project developed as part of our{" "}
-            <span className="font-bold bg-gradient-to-r from-blue-500 to-purple-500 bg-clip-text text-transparent">FullStack Development Course</span> under the guidance 
-            of <span className="font-bold bg-gradient-to-r from-purple-500 to-pink-500 bg-clip-text text-transparent">Sir SaifUllah Khan</span>. 
+            <span className={`font-bold bg-gradient-to-r bg-clip-text text-transparent ${
+              isDark 
+                ? 'from-blue-400 to-purple-400' 
+                : 'from-blue-500 to-purple-500'
+            }`}>FullStack Development Course</span> under the guidance 
+            of <span className={`font-bold bg-gradient-to-r bg-clip-text text-transparent ${
+              isDark 
+                ? 'from-purple-400 to-pink-400' 
+                : 'from-purple-500 to-pink-500'
+            }`}>Sir SaifUllah Khan</span>. 
             This project was assigned to sharpen our skills in modern web technologies 
             such as React, Node.js, and databases while also learning to design 
             user-friendly shopping platforms.
           </p>
           
           <div className='my-12'>
-            <h2 className="text-3xl md:text-4xl font-black bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent mb-8">
+            <h2 className={`text-3xl md:text-4xl font-black bg-gradient-to-r bg-clip-text text-transparent mb-8 ${
+              isDark 
+                ? 'from-purple-400 to-pink-400' 
+                : 'from-purple-600 to-pink-600'
+            }`}>
               Why ShopLite?
             </h2>
             <div className="grid md:grid-cols-3 gap-6 text-left">
-              <div className="bg-white/90 backdrop-blur-sm p-6 rounded-2xl shadow-lg border border-blue-100 hover:shadow-xl transition-all duration-300 hover:border-blue-200">
-                <h3 className="font-bold text-gray-800 text-lg mb-3">🚀 Simplicity</h3>
-                <p className="text-gray-600">A clean and easy-to-use shopping experience with intuitive design.</p>
+              <div className={`p-6 rounded-2xl shadow-lg border transition-all duration-300 hover:shadow-xl ${
+                isDark 
+                  ? 'bg-gray-800/90 border-gray-600 hover:border-blue-400' 
+                  : 'bg-white/90 border-blue-100 hover:border-blue-200'
+              }`}>
+                <h3 className={`font-bold text-lg mb-3 ${
+                  isDark ? 'text-gray-100' : 'text-gray-800'
+                }`}>🚀 Simplicity</h3>
+                <p className={isDark ? 'text-gray-400' : 'text-gray-600'}>
+                  A clean and easy-to-use shopping experience with intuitive design.
+                </p>
               </div>
               
-              <div className="bg-white/90 backdrop-blur-sm p-6 rounded-2xl shadow-lg border border-purple-100 hover:shadow-xl transition-all duration-300 hover:border-purple-200">
-                <h3 className="font-bold text-gray-800 text-lg mb-3">💻 Modern Tech Stack</h3>
-                <p className="text-gray-600">Powered by React, Tailwind CSS, and backend technologies to mimic real-world apps.</p>
+              <div className={`p-6 rounded-2xl shadow-lg border transition-all duration-300 hover:shadow-xl ${
+                isDark 
+                  ? 'bg-gray-800/90 border-gray-600 hover:border-purple-400' 
+                  : 'bg-white/90 border-purple-100 hover:border-purple-200'
+              }`}>
+                <h3 className={`font-bold text-lg mb-3 ${
+                  isDark ? 'text-gray-100' : 'text-gray-800'
+                }`}>💻 Modern Tech Stack</h3>
+                <p className={isDark ? 'text-gray-400' : 'text-gray-600'}>
+                  Powered by React, Tailwind CSS, and backend technologies to mimic real-world apps.
+                </p>
               </div>
               
-              <div className="bg-white/90 backdrop-blur-sm p-6 rounded-2xl shadow-lg border border-pink-100 hover:shadow-xl transition-all duration-300 hover:border-pink-200">
-                <h3 className="font-bold text-gray-800 text-lg mb-3">👨‍🏫 Guided by Expertise</h3>
-                <p className="text-gray-600">Developed under the supervision of an experienced instructor.</p>
+              <div className={`p-6 rounded-2xl shadow-lg border transition-all duration-300 hover:shadow-xl ${
+                isDark 
+                  ? 'bg-gray-800/90 border-gray-600 hover:border-pink-400' 
+                  : 'bg-white/90 border-pink-100 hover:border-pink-200'
+              }`}>
+                <h3 className={`font-bold text-lg mb-3 ${
+                  isDark ? 'text-gray-100' : 'text-gray-800'
+                }`}>👨‍🏫 Guided by Expertise</h3>
+                <p className={isDark ? 'text-gray-400' : 'text-gray-600'}>
+                  Developed under the supervision of an experienced instructor.
+                </p>
               </div>
             </div>
           </div>

@@ -1,8 +1,9 @@
+
 import { useEffect, useState } from "react";
 import "./index.css";
 import Header from "./Comp/Header";
 import Footer from "./Comp/Footer";
-import { Route, Routes, useLocation, BrowserRouter } from "react-router-dom";
+import { Route, Routes, useLocation, BrowserRouter } from "react-router-dom"; // ✅ BrowserRouter yahan import karen
 import MainBody from "./Comp/MainBody";
 import Login from "./Account/Login";
 import SignUp from "./Account/Signup";
@@ -24,16 +25,12 @@ import FeaturedPro from "./Comp/FeaturedPro";
 import Logo from "./Comp/Logo";
 import { AuthProvider, useAuth } from "./Auth/AuthContext";
 import ItemDetails from "./Comp/ItemDetails";
-
 import AccountOptions from "./Account/AccountOptions";
 import MobileMenu from "./Comp/MobileMenu";
 import { AnimatePresence, motion } from "framer-motion";
-
-// ✅ Theme Context Import
-import { ThemeProvider, useTheme } from "./context/ThemeContext";
 import OrderDetails from "./Comp/OrderDetails";
 import OrderHistory from "./Account/OrderHistory";
-
+import { ThemeProvider, useTheme } from "./context/ThemeContext";
 
 function AppContent() {
   const [cartItems, setCartItems] = useState([]);
@@ -45,15 +42,12 @@ function AppContent() {
   const [loading, setLoading] = useState(false);
   
   const { isAuthenticated } = useAuth();
-  
-  // ✅ Use Theme Context instead of local state
   const { theme, toggleTheme, isDark } = useTheme();
-  
   let location = useLocation();
 
-  const seeDetailsFun = (ItemID)=>{
-    return products.find((eachItem)=> eachItem.id === ItemID)
-  }
+  const seeDetailsFun = (ItemID) => {
+    return products.find((eachItem) => eachItem.id === ItemID);
+  };
 
   useEffect(() => {
     let p = products;
@@ -68,7 +62,6 @@ function AppContent() {
     setFilterItems(p);
   }, [searching, categories]);
 
-  // Add item to cart with authentication check
   const addToCart = (item) => {
     if (!isAuthenticated) {
       alert('Please login to add items to cart');
@@ -95,6 +88,7 @@ function AppContent() {
 
   const [accountOpts, setAccountOpts] = useState(false);
   const [mobileMenuOpn, setMobileMenu] = useState(false);
+  
   const pageVariants = {
     initial: { opacity: 0, y: 15 },
     animate: { opacity: 1, y: 0 },
@@ -102,9 +96,15 @@ function AppContent() {
   };
 
   return (
-    <>
+    <div className={`min-h-screen transition-all duration-500 ${
+      isDark 
+        ? 'dark bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 text-gray-100' 
+        : 'bg-gradient-to-br from-blue-50 via-purple-50 to-pink-50 text-gray-900'
+    }`}>
       {loading && (
-        <div className="w-full min-h-screen inset-0 bg-zinc-900 z-50 fixed flex items-center justify-center">
+        <div className={`w-full min-h-screen inset-0 z-50 fixed flex items-center justify-center ${
+          isDark ? 'bg-gray-900' : 'bg-zinc-900'
+        }`}>
           <Logo />
         </div>
       )}
@@ -119,10 +119,11 @@ function AppContent() {
           setCateButton={() => setCateButton(!categoryButton)}
           AccountOptBtn={() => setAccountOpts(!accountOpts)}
           mobileMenu={() => setMobileMenu(!mobileMenuOpn)}
-          toggleDarkMode={toggleTheme} // ✅ Use toggleTheme from context
-          darkMode={isDark} // ✅ Use isDark from context
+          toggleDarkMode={toggleTheme}
+          darkMode={isDark}
         />
-         <AnimatePresence mode="wait">
+        
+        <AnimatePresence mode="wait">
           <motion.div
             key={location.pathname}
             variants={pageVariants}
@@ -132,25 +133,25 @@ function AppContent() {
             transition={{ duration: 0.4 }}
             className="flex-1"
           >
-
-        <Routes>
-          <Route path="/" element={<Hero addToCart={addToCart} />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/signup" element={<SignUp />} />
-          <Route path="/profilepage" element={<ProfilePage />} />
-          <Route path="/userdetail" element={<UserDetail />} />
-          <Route path="/propicture" element={<ProPicture />} />
-          <Route path="/contactform" element={<Contact />} />
-          <Route path="/featuredquality" element={<FeaturedQuality />} />
-          <Route path="/about" element={<About />} />
-          <Route path="/shop" element={<Shop seeDetails={seeDetailsFun} onAdd={addToCart} products={filterOutItems} />} />
-          <Route path="/itemdetails/:id" element={<ItemDetails addToCart={addToCart} product={seeDetailsFun} />} />
-          <Route path="/cartbox" element={<CartBox cartItems={cartItems} setCartItems={setCartItems} />} />
-          <Route path="/orderdetails/:id" element={<OrderDetails/>}/>
-          <Route path="/yourorders" element={<OrderHistory/>}/>
-        </Routes>
- </motion.div>
+            <Routes>
+              <Route path="/" element={<Hero addToCart={addToCart} />} />
+              <Route path="/login" element={<Login />} />
+              <Route path="/signup" element={<SignUp />} />
+              <Route path="/profilepage" element={<ProfilePage />} />
+              <Route path="/userdetail" element={<UserDetail />} />
+              <Route path="/propicture" element={<ProPicture />} />
+              <Route path="/contactform" element={<Contact />} />
+              <Route path="/featuredquality" element={<FeaturedQuality />} />
+              <Route path="/about" element={<About />} />
+              <Route path="/shop" element={<Shop seeDetails={seeDetailsFun} onAdd={addToCart} products={filterOutItems} />} />
+              <Route path="/itemdetails/:id" element={<ItemDetails addToCart={addToCart} product={seeDetailsFun} />} />
+              <Route path="/cartbox" element={<CartBox cartItems={cartItems} setCartItems={setCartItems} />} />
+              <Route path="/orderdetails/:id" element={<OrderDetails />} />
+              <Route path="/yourorders" element={<OrderHistory />} />
+            </Routes>
+          </motion.div>
         </AnimatePresence>
+
         <Footer />
         
         {categoryButton && (
@@ -169,14 +170,26 @@ function AppContent() {
           <MobileMenu 
             AccountOptBtn={() => setAccountOpts(!accountOpts)} 
             setOpts={setMobileMenu} 
-            toggleMode={toggleTheme} // ✅ Use toggleTheme from context
-            darkMode={isDark} // ✅ Use isDark from context
+            toggleMode={toggleTheme}
+            darkMode={isDark}
           />
         )}
       </main>
-    </>
+    </div>
   );
 }
 
+// ✅ Main App Component
+function App() {
+  return (
+    <BrowserRouter> {/* ✅ Yahan BrowserRouter use karen */}
+      <ThemeProvider>
+        <AuthProvider>
+          <AppContent />
+        </AuthProvider>
+      </ThemeProvider>
+    </BrowserRouter>
+  );
+}
 
-export default AppContent;
+export default App;

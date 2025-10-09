@@ -1,9 +1,11 @@
 
 import React from "react";
 import { FaShippingFast, FaLock, FaClipboardList, FaUndo } from "react-icons/fa";
-import H2Styles from "../MiniParts/H2Styles";
+import { useTheme } from "../context/ThemeContext";
 
 const FeaturedQuality = () => {
+  const { isDark } = useTheme();
+  
   const features = [
     {
       icon: <FaShippingFast className="text-3xl" />,
@@ -32,15 +34,23 @@ const FeaturedQuality = () => {
   ];
 
   return (
-    <section className="py-16 bg-gradient-to-br from-blue-50 via-purple-50 to-pink-50 my-12 rounded-2xl">
+    <section className={`py-16 my-12 rounded-2xl transition-all duration-500 ${
+      isDark 
+        ? 'bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900' 
+        : 'bg-gradient-to-br from-blue-50 via-purple-50 to-pink-50'
+    }`}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Header - Dark and Bold */}
         <div className="text-center mb-16">
-          <h2 className="text-3xl md:text-4xl font-black text-gray-800 mb-6">
+          <h2 className={`text-3xl md:text-4xl font-black mb-6 ${
+            isDark ? 'text-gray-100' : 'text-gray-800'
+          }`}>
             Our Featured <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">Qualities</span>
           </h2>
-          <p className="text-xl text-gray-600 mt-4 max-w-3xl mx-auto">
+          <p className={`text-xl mt-4 max-w-3xl mx-auto ${
+            isDark ? 'text-gray-300' : 'text-gray-600'
+          }`}>
             Experience the best shopping with our premium services and features
           </p>
         </div>
@@ -50,14 +60,20 @@ const FeaturedQuality = () => {
           {features.map((feature, index) => (
             <div
               key={index}
-              className="group relative bg-white/90 backdrop-blur-sm rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-3 border border-white/20 hover:border-transparent"
+              className={`group relative backdrop-blur-sm rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-3 border ${
+                isDark 
+                  ? 'bg-gray-800/90 border-gray-700 hover:border-gray-600' 
+                  : 'bg-white/90 border-white/20 hover:border-transparent'
+              }`}
             >
               {/* Background Gradient Effect */}
               <div className={`absolute inset-0 bg-gradient-to-r ${feature.color} rounded-2xl opacity-0 group-hover:opacity-5 transition-opacity duration-500`}></div>
               
               {/* Animated Border */}
               <div className={`absolute inset-0 rounded-2xl bg-gradient-to-r ${feature.color} opacity-0 group-hover:opacity-100 transition-opacity duration-500 -z-10`}>
-                <div className="absolute inset-[2px] rounded-2xl bg-white/90"></div>
+                <div className={`absolute inset-[2px] rounded-2xl ${
+                  isDark ? 'bg-gray-800/90' : 'bg-white/90'
+                }`}></div>
               </div>
 
               {/* Content */}
@@ -70,12 +86,18 @@ const FeaturedQuality = () => {
                 </div>
 
                 {/* Title */}
-                <h3 className="text-xl font-bold text-gray-800 mb-4 group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-blue-600 group-hover:to-purple-600 transition-all duration-500">
+                <h3 className={`text-xl font-bold mb-4 group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-blue-600 group-hover:to-purple-600 transition-all duration-500 ${
+                  isDark ? 'text-gray-200' : 'text-gray-800'
+                }`}>
                   {feature.title}
                 </h3>
 
                 {/* Description */}
-                <p className="text-gray-600 leading-relaxed group-hover:text-gray-700 transition-colors duration-300">
+                <p className={`leading-relaxed group-hover:${
+                  isDark ? 'text-gray-400' : 'text-gray-700'
+                } transition-colors duration-300 ${
+                  isDark ? 'text-gray-400' : 'text-gray-600'
+                }`}>
                   {feature.desc}
                 </p>
 
@@ -90,8 +112,16 @@ const FeaturedQuality = () => {
               </div>
 
               {/* Floating Particles */}
-              <div className="absolute top-3 right-3 w-2 h-2 bg-blue-400 rounded-full opacity-0 group-hover:opacity-100 group-hover:animate-ping transition-opacity duration-500 delay-300"></div>
-              <div className="absolute bottom-3 left-3 w-1 h-1 bg-purple-400 rounded-full opacity-0 group-hover:opacity-100 group-hover:animate-ping transition-opacity duration-500 delay-500"></div>
+              <div className={`absolute top-3 right-3 w-2 h-2 rounded-full opacity-0 group-hover:opacity-100 group-hover:animate-ping transition-opacity duration-500 delay-300 ${
+                feature.color.includes('blue') ? 'bg-blue-400' : 
+                feature.color.includes('purple') ? 'bg-purple-400' :
+                feature.color.includes('green') ? 'bg-green-400' : 'bg-orange-400'
+              }`}></div>
+              <div className={`absolute bottom-3 left-3 w-1 h-1 rounded-full opacity-0 group-hover:opacity-100 group-hover:animate-ping transition-opacity duration-500 delay-500 ${
+                feature.color.includes('blue') ? 'bg-cyan-400' : 
+                feature.color.includes('purple') ? 'bg-pink-400' :
+                feature.color.includes('green') ? 'bg-emerald-400' : 'bg-red-400'
+              }`}></div>
             </div>
           ))}
         </div>
@@ -109,8 +139,12 @@ const FeaturedQuality = () => {
       </div>
 
       {/* Background Elements */}
-      <div className="absolute top-10 left-10 w-20 h-20 bg-blue-200 rounded-full blur-2xl opacity-30 animate-float"></div>
-      <div className="absolute bottom-10 right-10 w-16 h-16 bg-purple-200 rounded-full blur-2xl opacity-30 animate-float delay-1000"></div>
+      <div className={`absolute top-10 left-10 w-20 h-20 rounded-full blur-2xl opacity-30 animate-float ${
+        isDark ? 'bg-blue-600' : 'bg-blue-200'
+      }`}></div>
+      <div className={`absolute bottom-10 right-10 w-16 h-16 rounded-full blur-2xl opacity-30 animate-float delay-1000 ${
+        isDark ? 'bg-purple-600' : 'bg-purple-200'
+      }`}></div>
     </section>
   );
 };
