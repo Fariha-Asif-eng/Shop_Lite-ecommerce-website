@@ -4,7 +4,7 @@ import ProBox from "./ProBox";
 import ItemDetails from "./ItemDetails";
 import { motion } from "framer-motion";
 
-function MainBody({ addToCart, products, seeDetailsBtn }) {
+function MainBody({ addToCart, products, seeDetailsBtn, isDark }) {
 
 const containerVariants = {
   hidden: { opacity: 0 },
@@ -26,7 +26,13 @@ const itemVariants = {
     viewport={{once: true}}
     variants={containerVariants}
     initial='hidden' whileInView={'show'}
-    className="w-full min-h-screen bg-gradient-to-br from-blue-50 via-purple-50 to-pink-50 py-8">
+    className={`w-full min-h-screen py-8
+      ${
+      isDark 
+        ? 'bg-[#0B1120] text-gray-100' 
+        : 'bg-gradient-to-br from-blue-50 via-purple-50 to-pink-50'
+    }
+    `}>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
@@ -37,13 +43,17 @@ const itemVariants = {
       whileInView={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.9 }}
       // viewport={{ once: true }}
-      className="text-3xl md:text-4xl font-black text-gray-800 mb-4">
+      className={`text-3xl md:text-4xl font-black mb-4
+      ${isDark ? 'text-gray-100' : 'text-gray-800'}
+      `}>
             Our <span
             initial={{ width: 0 }}
           whileInView={{ width: "100%" }}
           transition={{ duration: 0.7, delay: 0.3 }}
 
-            className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">Products</span>
+            className={` text-transparent
+            ${isDark ? 'text-gray-100 bg-gradient-to-r from-blue-300 to-purple-500 bg-clip-text' : 'bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text'}
+            `}>Products</span>
           </motion.h1>
 
           <motion.p
@@ -52,7 +62,7 @@ const itemVariants = {
         transition={{ duration: 0.7, delay: 0.3 }}
         // viewport={{once:true}}
 
-           className="text-lg text-gray-600 max-w-2xl mx-auto">
+           className={`${isDark ? 'text-gray-100' : 'text-gray-600'}text-lg max-w-2xl mx-auto`}>
             Discover amazing products with great deals and premium quality
           </motion.p>
         </div>

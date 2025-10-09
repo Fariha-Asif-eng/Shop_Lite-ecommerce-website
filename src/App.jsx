@@ -98,8 +98,8 @@ function AppContent() {
   return (
     <div className={`min-h-screen transition-all duration-500 ${
       isDark 
-        ? 'dark bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 text-gray-100' 
-        : 'bg-gradient-to-br from-blue-50 via-purple-50 to-pink-50 text-gray-900'
+        ? 'bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 text-gray-100' 
+        : 'bg-gradient-to-br from-blue-50 via-purple-50 to-pink-50'
     }`}>
       {loading && (
         <div className={`w-full min-h-screen inset-0 z-50 fixed flex items-center justify-center ${
@@ -152,14 +152,14 @@ function AppContent() {
           </motion.div>
         </AnimatePresence>
 
-        <Footer />
+        <Footer darkMode={isDark} />
         
         {categoryButton && (
           <CategoryFilterButton onFilterChange={setCategories} />
         )}
         
         {openCart && (
-          <MyCart cartItems={cartItems} setCartItems={setCartItems} />
+          <MyCart darkMode={isDark} cartItems={cartItems} setCartItems={setCartItems} />
         )}
 
         {accountOpts && (

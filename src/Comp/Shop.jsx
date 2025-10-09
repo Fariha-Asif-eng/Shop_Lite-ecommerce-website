@@ -13,7 +13,7 @@ function Shop({onAdd, products, seeDetails}) {
         ? 'bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900' 
         : 'bg-gradient-to-br from-blue-50 via-purple-50 to-pink-50'
     }`}>
-      <MainBody addToCart={onAdd} products={products} seeDetailsBtn={seeDetails} />
+      <MainBody addToCart={onAdd} products={products} seeDetailsBtn={seeDetails} isDark={isDark} />
       
       <Contact />
     </section>

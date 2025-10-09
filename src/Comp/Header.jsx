@@ -22,7 +22,9 @@ function Header({ontoggle, btnText, searching, searchItems, currentItems, setCat
 
   return (
     
-      <header className="fixed top-0 w-full bg-gradient-to-r from-gray-900 to-gray-800 backdrop-blur-sm shadow-2xl border-b border-gray-700 py-3 px-6 flex items-center justify-between z-50">
+      <header className={`fixed top-0 w-full backdrop-blur-sm shadow-2xl border-b border-gray-700 py-3 px-6 flex items-center justify-between z-50
+      ${darkMode ? 'bg-gradient-to-r from-[#0B1190] via-[#0b1234] to-[#0b1190]' : 'bg-gradient-to-r from-[#0b2345] via-[#0b1190] to-[#0b3456]'}
+      `}>
         {/* Logo - Dark background pe clear dikhega */}
         <div className="flex-shrink-0">
           <Logo />
@@ -87,7 +89,8 @@ function Header({ontoggle, btnText, searching, searchItems, currentItems, setCat
               value={searching}
               onChange={onChange}
               type="text" 
-              className='w-full bg-gray-700 border border-gray-600 rounded-lg px-3 py-2 focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-300 outline-none text-white placeholder-gray-400 text-sm' 
+              className={`w-full bg-gray-700 border border-gray-600 rounded-lg px-3 py-2 focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-300 outline-none text-white placeholder-gray-400 text-sm 
+                ${darkMode ? 'bg-gradient-to-r from-[#0B1059] to-[#3c3f88cb]' : 'bg-gradient-to-r from-[#2f338d] to-[#0b1290]'}  `}
               placeholder='🔍Search...' 
             />
           </div>
@@ -106,7 +109,7 @@ function Header({ontoggle, btnText, searching, searchItems, currentItems, setCat
           {/* Dark Mode Toggle Button */}
           <button
             onClick={toggleDarkMode}
-            className="p-2 rounded-lg bg-gray-700 hover:bg-gray-600 transition-colors duration-300 text-gray-300 hover:text-white border border-gray-600 cursor-pointer"
+            className={`${darkMode ? 'bg-gradient-to-b from-[#0B1059] to-[#3c3f88cb]' : 'bg-gradient-to-t from-[#2f338d] to-[#0b1290]'} p-2 rounded-lg transition-colors duration-300 text-gray-300 hover:text-white border border-gray-600 cursor-pointer`}
             title={darkMode ? "Switch to Light Mode" : "Switch to Dark Mode"}
           >
             {darkMode ? (
@@ -146,7 +149,7 @@ function Header({ontoggle, btnText, searching, searchItems, currentItems, setCat
           
           {/* Cart Button */}
           <div className="ml-1">
-            <CartButton currentItems={currentItems} btnText={btnText} onToggle={ontoggle} />
+            <CartButton darkMode={darkMode} currentItems={currentItems} btnText={btnText} onToggle={ontoggle} />
           </div>
         </div>
 
