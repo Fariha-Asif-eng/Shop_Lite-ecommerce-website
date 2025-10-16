@@ -2,28 +2,25 @@ import React from 'react'
 import Logo from './Logo';
 import CartButton from './CartButton';
 import { NavLink } from 'react-router-dom';
-import { BsFilterCircleFill, BsMenuApp, BsMenuButton, BsMenuButtonFill, BsMenuButtonWide } from 'react-icons/bs';
+import { BsFilterCircleFill } from 'react-icons/bs';
 import { useAuth } from '../Auth/AuthContext';
-import { TfiMenuAlt } from 'react-icons/tfi';
+
 import { AiOutlineMenu } from 'react-icons/ai';
 
 function Header({ontoggle, btnText, searching, searchItems, currentItems, setCateButton, AccountOptBtn, mobileMenu, toggleDarkMode, darkMode}) {
-    const { user, logout, isAuthenticated } = useAuth();
+    const { user,  isAuthenticated } = useAuth();
     
     const onChange = (a)=>{
       searchItems(a.target.value)
       console.log(searchItems);
     }
 
-    const handleLogout = () => {
-      logout();
-      window.location.href = '/';
-    }
+    
 
   return (
     
       <header className={`fixed top-0 w-full backdrop-blur-sm shadow-2xl border-b border-gray-700 py-3 px-6 flex items-center justify-between z-50
-      ${darkMode ? 'bg-gradient-to-r from-[#0B1190] via-[#0b1234] to-[#0b1190]' : 'bg-gradient-to-r from-[#0b2345] via-[#0b1190] to-[#0b3456]'}
+      bg-gradient-to-b  from-[#070F2B] to-[#1B1A55]
       `}>
         {/* Logo - Dark background pe clear dikhega */}
         <div className="flex-shrink-0">

@@ -1,7 +1,9 @@
+import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../Auth/AuthContext';
 
 function MyCart({ cartItems, setCartItems, darkMode }) {
   const { user, isAuthenticated } = useAuth();
+  let navigateTo = useNavigate();
 
   const upQty = (id, d) => {
     setCartItems((pre) =>
@@ -57,10 +59,16 @@ function MyCart({ cartItems, setCartItems, darkMode }) {
   }
 
   return (
-    <div className={` min-w-[50%] sm:w-[30%] shadow-lg h-[88vh] mr-2 top-16 rounded-md  p-1 md:p-2 right-0 fixed flex flex-col z-101 ${darkMode ? 'text-gray-100 bg-gradient-to-r from-[#0B1059] to-[#3c3f88cb]' : 'bg-gradient-to-r from-blue-200 to-pink-200 via-purple-200 text-gray-800'}`}>
+    <div className={` min-w-[50%] sm:w-[30%] shadow-lg h-[88vh] mr-2 top-16 rounded-md  p-1 md:p-2 right-0 fixed flex flex-col z-101 ${
+      darkMode 
+        ? 'bg-gradient-to-b  from-[#070F2B] to-[#1B1A55] text-gray-100' 
+        : 'bg-gradient-to-br from-blue-50 via-purple-50 to-pink-50 text-gray-800'
+    }`}>
       {/* User welcome message */}
-      <div className="p-3 bg-blue-50 rounded-md mb-3">
-        <p className="text-sm text-blue-700">
+      <div className={`p-3 rounded-md mb-3 shadow-zinc-500 shadow-2xl
+       
+        `}>
+        <p className="text-sm ">
           Welcome, <span className="font-semibold">{user.name}</span>!
         </p>
       </div>
@@ -75,7 +83,7 @@ function MyCart({ cartItems, setCartItems, darkMode }) {
           cartItems.map((item) => (
             <div
               key={item.id}
-              className={`${darkMode ? 'bg-[#1e205a] text-gray-100' : 'bg-gray-200 text-gray-800'} flex gap-1 md:gap-3 items-center shadow rounded p-1 md:p-2`}
+              className={`${darkMode ? 'bg-[#1b1a55] text-gray-100' : 'bg-gray-200 text-gray-800'} flex gap-1 md:gap-3 items-center shadow-2xl rounded p-1 md:p-2`}
             >
               <img
                 src={item.img}
@@ -85,6 +93,29 @@ function MyCart({ cartItems, setCartItems, darkMode }) {
               <div className="flex-1 text-sm md:text-lg">
                 <h3 className="font-semibold">{item.title}</h3>
                 <span>${item.price}</span>
+              </div>
+              <div className=''>
+                <button
+              onClick={() => navigateTo(`/itemdetails/${item.id}`)}
+              className={` mx-4 text-sm p-[3px] rounded-md cursor-pointer shadow-2xl  transition-all duration-500 bg-[#fd366e] text-white  hover:bg-[#ed366e] font-semibold flex items-center space-x-2 
+                `}
+            >
+              <span>View</span>
+              {/* <svg
+                className="w-5 h-5"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth={2}
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                viewBox="0 0 24 24"
+                whileHover={{ x: 3 }}
+                transition={{ type: "spring", stiffness: 300 }}
+              >
+                <path d="M5 12h14" />
+                <path d="M12 5l7 7-7 7" />
+              </svg> */}
+            </button>
               </div>
               <div className="flex items-center gap-2">
                 <button

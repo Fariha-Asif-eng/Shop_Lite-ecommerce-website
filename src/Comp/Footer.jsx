@@ -5,7 +5,7 @@ import Logo from './Logo';
 
 function Footer({darkMode}) {
   return (
-    <footer className={`bg-gradient-to-br ${darkMode ? 'bg-gradient-to-r from-[#0B1190] via-[#0b1234] to-[#0b1190]' : 'bg-gradient-to-r from-[#0b2345] via-[#0b1190] to-[#0b3456]'} text-white pt-16 pb-8`}>
+    <footer className={`bg-gradient-to-b  from-[#070F2B] to-[#1B1A55] text-white pt-16 pb-8`}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
           {/* Company Info - Same Logo as Navbar */}
@@ -81,8 +81,8 @@ function Footer({darkMode}) {
         <div className="border-t border-gray-800 pt-8 text-center">
           
           <p className="text-gray-400 text-sm">
-            Made with ❤️ Shop Lite
-            © 2025. All rights reserved. 
+             ShopLite 2025
+            © All rights reserved. 
           </p>
         </div>
       </div>

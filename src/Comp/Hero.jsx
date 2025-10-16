@@ -13,7 +13,7 @@ function Hero({addToCart, products}) {
   return (
     <section className={`w-full min-h-screen flex flex-col pt-14 mb-12 overflow-hidden transition-all duration-500 ${
       isDark 
-        ? 'bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900' 
+        ? 'bg-gradient-to-b  from-[#070F2B] to-[#1B1A55]' 
         : 'bg-gradient-to-br from-blue-50 via-purple-50 to-pink-50'
     }`}>
 
@@ -43,7 +43,7 @@ function Hero({addToCart, products}) {
           
           {/* Tagline */}
           <p className='text-xl md:text-2xl text-gray-200 mt-6 text-center max-w-2xl leading-relaxed animate-slide-up'>
-            All you need is here, shop like it's yours.
+            All you need are here, shop like it's yours.
           </p>
 
           {/* CTA Buttons */}
@@ -69,11 +69,13 @@ function Hero({addToCart, products}) {
       </div>
 
       {/* About Section - Modern Design */}
-      <section className={`my-8 text-center w-full min-h-[60vh] py-16 px-6 rounded-2xl mx-4 border shadow-lg transition-all duration-500 ${
+      <section className={`my-8 text-center w-full min-h-[60vh] py-16 px-6 rounded-2xl mx-4 shadow-lg transition-all duration-500 
+      ${
         isDark 
-          ? 'bg-gradient-to-br from-gray-800 to-gray-900 border-gray-700' 
+          ? 'bg-gradient-to-b  from-[#070F2B] to-[#1B1A55]' 
           : 'bg-gradient-to-br from-white to-blue-50 border-white/50'
-      }`}>
+      }
+      `}>
         <div className="max-w-4xl mx-auto">
           <h2 className={`text-4xl md:text-5xl font-black bg-gradient-to-r bg-clip-text text-transparent mb-8 ${
             isDark 
@@ -102,7 +104,7 @@ function Hero({addToCart, products}) {
           </p>
           
           <div className='my-12'>
-            <h2 className={`text-3xl md:text-4xl font-black bg-gradient-to-r bg-clip-text text-transparent mb-8 ${
+            <h2 className={`text-3xl md:text-4xl font-black bg-gradient-to-r bg-clip-text text-transparent mb-8 pb-6 ${
               isDark 
                 ? 'from-purple-400 to-pink-400' 
                 : 'from-purple-600 to-pink-600'
@@ -110,10 +112,10 @@ function Hero({addToCart, products}) {
               Why ShopLite?
             </h2>
             <div className="grid md:grid-cols-3 gap-6 text-left">
-              <div className={`p-6 rounded-2xl shadow-lg border transition-all duration-300 hover:shadow-xl ${
+              <div className={`p-6 rounded-2xl shadow-lg hover:scale-105 transition-all duration-300 hover:shadow-xl ${
                 isDark 
-                  ? 'bg-gray-800/90 border-gray-600 hover:border-blue-400' 
-                  : 'bg-white/90 border-blue-100 hover:border-blue-200'
+                  ? 'bg-[#1a1a19] hover:bg-[#1a1a00]  ' 
+                  : 'bg-white/90 '
               }`}>
                 <h3 className={`font-bold text-lg mb-3 ${
                   isDark ? 'text-gray-100' : 'text-gray-800'
@@ -123,10 +125,10 @@ function Hero({addToCart, products}) {
                 </p>
               </div>
               
-              <div className={`p-6 rounded-2xl shadow-lg border transition-all duration-300 hover:shadow-xl ${
+              <div className={`p-6 rounded-2xl shadow-lg hover:scale-105 transition-all duration-300 hover:shadow-xl ${
                 isDark 
-                  ? 'bg-gray-800/90 border-gray-600 hover:border-purple-400' 
-                  : 'bg-white/90 border-purple-100 hover:border-purple-200'
+                  ? 'bg-[#1a1a19] hover:bg-[#1a1a00] ' 
+                  : 'bg-white/90 '
               }`}>
                 <h3 className={`font-bold text-lg mb-3 ${
                   isDark ? 'text-gray-100' : 'text-gray-800'
@@ -136,10 +138,10 @@ function Hero({addToCart, products}) {
                 </p>
               </div>
               
-              <div className={`p-6 rounded-2xl shadow-lg border transition-all duration-300 hover:shadow-xl ${
+              <div className={`p-6 rounded-2xl shadow-lg hover:scale-105 transition-all duration-300 hover:shadow-xl ${
                 isDark 
-                  ? 'bg-gray-800/90 border-gray-600 hover:border-pink-400' 
-                  : 'bg-white/90 border-pink-100 hover:border-pink-200'
+                  ? 'bg-[#1a1a19] hover:bg-[#1a1a00] ' 
+                  : 'bg-white/90 '
               }`}>
                 <h3 className={`font-bold text-lg mb-3 ${
                   isDark ? 'text-gray-100' : 'text-gray-800'

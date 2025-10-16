@@ -107,7 +107,7 @@ function Contact() {
   return (
     <section className={`min-h-screen mt-10 py-16 transition-all duration-500 ${
       isDark 
-        ? 'bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900' 
+        ? 'bg-gradient-to-b  from-[#070F2B] to-[#1B1A55]' 
         : 'bg-gradient-to-br from-blue-50 via-purple-50 to-pink-50'
     }`}>
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -122,14 +122,10 @@ function Contact() {
           </p>
         </div>
 
-        <div className={`backdrop-blur-sm rounded-2xl shadow-xl px-4 py-6 border transition-all duration-500 ${
-          isDark 
-            ? 'bg-gray-800/90 border-gray-700' 
-            : 'bg-white/80 border-white/20'
-        }`}>
-          <div className="grid md:grid-cols-2 gap-8">
-            <div className="space-y-6">
-              <div>
+        <div className={`backdrop-blur-sm rounded-2xl shadow-xl px-4 py-6  transition-all duration-500 bg-transparent`}>
+          <div className="grid md:grid-cols-2 gap-8 ">
+            <div className="space-y-6 ">
+              <div className=''>
                 <h3 className="text-2xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent mb-4">
                   Get in Touch
                 </h3>
@@ -210,7 +206,7 @@ function Contact() {
                   placeholder="Your Name" 
                   className={`w-full p-3 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-300 ${
                     isDark 
-                      ? 'bg-gray-700 border-gray-600 text-white placeholder-gray-400' 
+                      ? 'bg-gradient-to-b  from-[#070F2B] to-[#1B1A55] text-gray-400 border-gray-500' 
                       : 'bg-white border-gray-300 text-gray-900'
                   }`}
                   required
@@ -224,7 +220,7 @@ function Contact() {
                   placeholder="Your Email" 
                   className={`w-full p-3 border rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all duration-300 ${
                     isDark 
-                      ? 'bg-gray-700 border-gray-600 text-white placeholder-gray-400' 
+                      ? 'bg-gradient-to-b  from-[#070F2B] to-[#1B1A55] text-gray-400 border-gray-500' 
                       : 'bg-white border-gray-300 text-gray-900'
                   }`}
                   required
@@ -238,7 +234,7 @@ function Contact() {
                   rows="4" 
                   className={`w-full p-3 border rounded-lg focus:ring-2 focus:ring-pink-500 focus:border-transparent transition-all duration-300 ${
                     isDark 
-                      ? 'bg-gray-700 border-gray-600 text-white placeholder-gray-400' 
+                      ? 'bg-gradient-to-b  from-[#070F2B] to-[#1B1A55] text-gray-400 border-gray-500'
                       : 'bg-white border-gray-300 text-gray-900'
                   }`}
                   required

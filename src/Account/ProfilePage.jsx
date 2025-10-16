@@ -5,7 +5,7 @@ import { useState, useEffect } from 'react';
 import { NavLink } from 'react-router-dom';
 import OrderHistory from '../Account/OrderHistory';
 
-const ProfilePage = () => {
+const ProfilePage = ({isDark}) => {
   const { user } = useAuth();
   const [userMessages, setUserMessages] = useState([]);
 
@@ -26,51 +26,56 @@ const ProfilePage = () => {
       </div>
     );
   }
-
+let isDarkKk = isDark ? 'text-gray-300' : 'text-gray-700';
+let darkInput = isDark ? 'bg-gradient-to-r from-blue-800/30 to-white/30 text-gray-200' : 'text-gray-700'
   return (
-    <div className="min-h-screen mt-12 bg-gradient-to-br from-blue-50 via-purple-50 to-pink-50 py-16">
+    <div className={`min-h-screen mt-12 py-16 transition-all duration-300 ${
+      isDark 
+        ? 'bg-gradient-to-b from-blue-950/60 via-blue-800/20 to-blue-700/25 text-gray-100' 
+        : 'bg-gradient-to-br from-blue-50 via-purple-50 to-pink-50'
+    }`}>
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <div className="text-center mb-12">
-          <h2 className='text-4xl text-gray-700 font-bold'>Profile Details</h2>
-          <p className="text-gray-600 mt-4">Manage your account and view your activity</p>
+          <h2 className={`text-4xl font-bold ${isDarkKk}`}>Profile Details</h2>
+          <p className={` ${isDarkKk} mt-4`}>Manage your account and view your activity</p>
         </div>
 
         {/* User Info Card */}
-        <div className="bg-white/80 backdrop-blur-sm rounded-2xl shadow-xl p-8 border border-white/20 mb-8">
+        <div className={`bg-transparent backdrop-blur-sm rounded-xl shadow-2xl p-8 border border-gray-400/20 mb-8`}>
           <div className="grid md:grid-cols-2 gap-8">
             {/* Basic Info */}
-            <div className="space-y-6">
+            <div className="space-y-6 bg-transparent">
               <h3 className="text-2xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
                 Personal Information
               </h3>
               
               <div className="space-y-4">
-                <div className="flex items-center justify-between p-4 bg-gray-50 rounded-lg">
-                  <span className="font-semibold text-gray-700">Name:</span>
-                  <span className="text-gray-900 font-medium">{user.name}</span>
+                <div className={` ${darkInput} flex items-center justify-between p-4  rounded-lg`}>
+                  <span className="font-semibold ">Name:</span>
+                  <span className={" font-medium"}>{user.name}</span>
                 </div>
                 
-                <div className="flex items-center justify-between p-4 bg-gray-50 rounded-lg">
-                  <span className="font-semibold text-gray-700">Email:</span>
-                  <span className="text-gray-900 font-medium">{user.email}</span>
+                <div className={` ${darkInput} flex items-center justify-between p-4  rounded-lg`}>
+                  <span className="font-semibold ">Email:</span>
+                  <span className={" font-medium"}>{user.email}</span>
                 </div>
                 
-                <div className="flex items-center justify-between p-4 bg-gray-50 rounded-lg">
-                  <span className="font-semibold text-gray-700">Role:</span>
-                  <span className="text-gray-900 font-medium capitalize">{user.role}</span>
+                <div className={` ${darkInput} flex items-center justify-between p-4  rounded-lg`}>
+                  <span className="font-semibold ">Role:</span>
+                  <span className=" font-medium capitalize">{user.role}</span>
                 </div>
                 
-                <div className="flex items-center justify-between p-4 bg-gray-50 rounded-lg">
-                  <span className="font-semibold text-gray-700">User ID:</span>
-                  <span className="text-gray-900 font-medium text-sm">{user.id}</span>
+                <div className={` ${darkInput} flex items-center justify-between p-4  rounded-lg`}>
+                  <span className="font-semibold ">User ID:</span>
+                  <span className=" font-medium text-sm">{user.id}</span>
                 </div>
               </div>
             </div>
 
             {/* Quick Actions */}
             <div className="space-y-6">
-              <h3 className="text-2xl font-bold bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">
+              <h3 className="text-2xl font-bold bg-transparent text-transparent">
                 Quick Actions
               </h3>
               
@@ -101,7 +106,7 @@ const ProfilePage = () => {
         </div>
 
         {/* Messages Section */}
-        <div className="bg-white/80 backdrop-blur-sm rounded-2xl shadow-xl p-8 border border-white/20 mb-8">
+        <div className= {`bg-transparent backdrop-blur-sm rounded-2xl shadow-xl p-8 border border-white/20 mb-8 `}>
           <div className="flex items-center justify-between mb-6">
             <h3 className="text-2xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
               Your Messages
@@ -161,11 +166,11 @@ const ProfilePage = () => {
         </div>
 
         {/* Order History Section */}
-        <div className="bg-white/80 backdrop-blur-sm rounded-2xl shadow-xl p-8 border border-white/20">
+        <div className={` backdrop-blur-sm rounded-2xl shadow-xl p-8 border border-gray-400/20 bg-transparent `}>
           <h3 className="text-2xl font-bold bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent mb-6">
             Order History
           </h3>
-          <OrderHistory/>
+          <OrderHistory isDark={isDark}/>
           {/* <div className="text-center py-8">
             <div className="text-6xl mb-4">📦</div>
             <p className="text-gray-500 text-lg">Your order history will appear here...</p>
