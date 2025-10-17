@@ -4,7 +4,7 @@ import ProBox from "./ProBox";
 import ItemDetails from "./ItemDetails";
 import { motion } from "framer-motion";
 
-function MainBody({ addToCart, products, seeDetailsBtn }) {
+function MainBody({ addToCart, products, seeDetailsBtn, isDark }) {
 
 const containerVariants = {
   hidden: { opacity: 0 },
@@ -25,8 +25,14 @@ const itemVariants = {
     <motion.main 
     viewport={{once: true}}
     variants={containerVariants}
-    initial='hidden' whileInView={'show'}
-    className="w-full min-h-screen bg-gradient-to-br from-blue-50 via-purple-50 to-pink-50 py-8">
+     whileInView={'show'}
+    className={`w-full min-h-screen py-8
+      ${
+      isDark 
+        ? 'bg-gradient-to-b from-blue-950/60 via-blue-800/20 to-blue-700/25' 
+        : 'bg-gradient-to-br from-blue-50 via-purple-50 to-pink-50'
+    }
+    `}>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
@@ -37,13 +43,17 @@ const itemVariants = {
       whileInView={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.9 }}
       // viewport={{ once: true }}
-      className="text-3xl md:text-4xl font-black text-gray-800 mb-4">
+      className={`text-3xl md:text-4xl font-black mb-4
+      ${isDark ? 'text-gray-100' : 'text-gray-800'}
+      `}>
             Our <span
             initial={{ width: 0 }}
           whileInView={{ width: "100%" }}
           transition={{ duration: 0.7, delay: 0.3 }}
 
-            className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">Products</span>
+            className={` text-transparent
+            ${isDark ? 'text-gray-100 bg-gradient-to-r from-blue-300 to-purple-500 bg-clip-text' : 'bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text'}
+            `}>Products</span>
           </motion.h1>
 
           <motion.p
@@ -52,15 +62,15 @@ const itemVariants = {
         transition={{ duration: 0.7, delay: 0.3 }}
         // viewport={{once:true}}
 
-           className="text-lg text-gray-600 max-w-2xl mx-auto">
+           className={`${isDark ? 'text-gray-100' : 'text-gray-700'} text-lg max-w-2xl mx-auto`}>
             Discover amazing products with great deals and premium quality
           </motion.p>
         </div>
 
         {/* Products Count */}
         <div className="flex justify-between items-center mb-6 px-2">
-          <p className="text-gray-700 font-semibold">
-            Showing <span className="text-blue-600">{products.length}</span> products
+          <p className={`${isDark ? 'text-gray-200': 'text-gray-700'} font-semibold`}>
+            Showing <span className={`${isDark ? 'text-amber-500':"text-blue-600"}`}>{products.length}</span> products
           </p>
           <div className="bg-gradient-to-r from-blue-500 to-purple-500 text-white px-4 py-2 rounded-full text-sm font-semibold shadow-lg">
             🎯 Best Deals
@@ -90,12 +100,12 @@ const itemVariants = {
           ) : (
             /* No Products Found State */
             <div className="col-span-full text-center py-16">
-              <div className="bg-white/80 backdrop-blur-sm rounded-2xl p-12 shadow-lg border border-white/20 max-w-2xl mx-auto">
+              <div className="bg-transparent backdrop-blur-sm rounded-2xl p-12 shadow-lg border border-white/20 max-w-2xl mx-auto">
                 <div className="text-8xl mb-6">🔍</div>
                 <h3 className="text-2xl font-bold text-gray-800 mb-4">
                   No Products Found
                 </h3>
-                <p className="text-gray-600 text-lg mb-6">
+                <p className={`${isDark?'text-gray-200':'text-gray-600'} text-lg mb-6`}>
                   We couldn't find any products matching your search. Try different keywords or browse our categories.
                 </p>
                 <div className="bg-gradient-to-r from-blue-500 to-purple-500 text-white px-6 py-3 rounded-xl font-semibold inline-block shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105">

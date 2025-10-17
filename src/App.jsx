@@ -98,12 +98,12 @@ function AppContent() {
   return (
     <div className={`min-h-screen transition-all duration-500 ${
       isDark 
-        ? 'dark bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 text-gray-100' 
-        : 'bg-gradient-to-br from-blue-50 via-purple-50 to-pink-50 text-gray-900'
+        ? 'bg-gradient-to-b  from-[#070F2B] to-[#1B1A55]' 
+        : 'bg-gradient-to-br from-blue-50 via-purple-50 to-pink-50'
     }`}>
       {loading && (
         <div className={`w-full min-h-screen inset-0 z-50 fixed flex items-center justify-center ${
-          isDark ? 'bg-gray-900' : 'bg-zinc-900'
+          isDark ? 'bg-gradient-to-b from-blue-950/60 via-blue-800/20 to-blue-700/25' : ''
         }`}>
           <Logo />
         </div>
@@ -137,29 +137,29 @@ function AppContent() {
               <Route path="/" element={<Hero addToCart={addToCart} />} />
               <Route path="/login" element={<Login />} />
               <Route path="/signup" element={<SignUp />} />
-              <Route path="/profilepage" element={<ProfilePage />} />
+              <Route path="/profilepage" element={<ProfilePage isDark={isDark} />} />
               <Route path="/userdetail" element={<UserDetail />} />
               <Route path="/propicture" element={<ProPicture />} />
               <Route path="/contactform" element={<Contact />} />
               <Route path="/featuredquality" element={<FeaturedQuality />} />
               <Route path="/about" element={<About />} />
               <Route path="/shop" element={<Shop seeDetails={seeDetailsFun} onAdd={addToCart} products={filterOutItems} />} />
-              <Route path="/itemdetails/:id" element={<ItemDetails addToCart={addToCart} product={seeDetailsFun} />} />
+              <Route path="/itemdetails/:id" element={<ItemDetails isDark={isDark} addToCart={addToCart} product={seeDetailsFun} />} />
               <Route path="/cartbox" element={<CartBox cartItems={cartItems} setCartItems={setCartItems} />} />
-              <Route path="/orderdetails/:id" element={<OrderDetails />} />
-              <Route path="/yourorders" element={<OrderHistory />} />
+              <Route path="/orderdetails/:id" element={<OrderDetails isDark={isDark} />} />
+              <Route path="/yourorders" element={<OrderHistory isDark={isDark} />} />
             </Routes>
           </motion.div>
         </AnimatePresence>
 
-        <Footer />
+        <Footer darkMode={isDark} />
         
         {categoryButton && (
           <CategoryFilterButton onFilterChange={setCategories} />
         )}
         
         {openCart && (
-          <MyCart cartItems={cartItems} setCartItems={setCartItems} />
+          <MyCart darkMode={isDark} cartItems={cartItems} setCartItems={setCartItems} />
         )}
 
         {accountOpts && (

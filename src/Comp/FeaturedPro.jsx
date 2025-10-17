@@ -64,14 +64,14 @@ function FeaturedPro({ addToCart }) {
   return (
     <section className={`min-h-[60vh] w-full p-4 my-6 flex flex-col items-center relative overflow-hidden transition-all duration-500 ${
       isDark 
-        ? 'bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900' 
+        ? 'bg-gradient-to-b  from-[#070F2B] to-[#1B1A55]' 
         : 'bg-gradient-to-br from-blue-50 via-purple-50 to-pink-50'
     }`}>
       
       {/* Animated Background */}
       <div className={`absolute inset-0 animate-gradient-x ${
         isDark 
-          ? 'bg-gradient-to-br from-gray-800 via-gray-900 to-gray-800' 
+          ? 'bg-gradient-to-b  from-[#070F2B] to-[#1B1A55]' 
           : 'bg-gradient-to-br from-blue-50 via-purple-50 to-pink-50'
       }`}></div>
 
@@ -116,7 +116,7 @@ function FeaturedPro({ addToCart }) {
       {/* Products Grid using ProBox Component */}
       <motion.div 
         variants={containerVariants}
-        initial='hidden'
+        
         whileInView={'show'} 
         viewport={{ once: true, amount: 0.4 }}
         className='w-full max-w-7xl my-8 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8 mx-auto relative z-10'

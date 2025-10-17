@@ -36,7 +36,7 @@ const FeaturedQuality = () => {
   return (
     <section className={`py-16 my-12 rounded-2xl transition-all duration-500 ${
       isDark 
-        ? 'bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900' 
+        ? 'bg-gradient-to-b  from-[#070F2B] to-[#1B1A55]' 
         : 'bg-gradient-to-br from-blue-50 via-purple-50 to-pink-50'
     }`}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">

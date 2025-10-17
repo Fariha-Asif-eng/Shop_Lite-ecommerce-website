@@ -9,7 +9,7 @@ function About() {
   return (
     <section className={`min-h-screen mt-10 py-16 transition-all duration-500 ${
       isDark 
-        ? 'bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900' 
+        ? 'bg-gradient-to-b  from-[#070F2B] to-[#1B1A55] ' 
         : 'bg-gradient-to-br from-blue-50 via-purple-50 to-pink-50'
     }`}>
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -39,11 +39,7 @@ function About() {
         </div>
 
         {/* Main Content */}
-        <div className={`backdrop-blur-sm rounded-2xl shadow-xl p-8 border transition-all duration-500 ${
-          isDark 
-            ? 'bg-gray-800/90 border-gray-700' 
-            : 'bg-white/80 border-white/20'
-        }`}>
+        <div className={`backdrop-blur-sm rounded-2xl shadow-xl shadow-black/45 p-8 transition-all duration-500 bg-transparent`}>
           <div className="grid md:grid-cols-2 gap-8">
             <div className="space-y-4">
               <h3 className="text-2xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">

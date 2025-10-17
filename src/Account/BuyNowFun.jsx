@@ -1,19 +1,19 @@
-import { DataBases, VITE_APPWRITE_OrderCollection_ID, VITE_APPWRITE_DB_ID, account } from '../Auth/Config';
-import { ID } from 'appwrite';
+import { DataBases, account} from '../Auth/Config';
+import {  ID } from 'appwrite';
 
 // const DATABASE_ID = 'your_database_id';
 // const COLLECTION_ID = 'orders';
 
-async function handlePlaceOrder(product, total, address) {
+export const handlePlaceOrder = async ({product, total, address})=> {
   try {
     const user = await account.get(); // Get logged-in user info
 
-    const order = await DataBases.createDocument(
-      VITE_APPWRITE_DB_ID,
-      VITE_APPWRITE_OrderCollection_ID,
+      let order = await DataBases.createDocument(
+      import.meta.env.VITE_APPWRITE_DB_ID,
+      import.meta.env.VITE_APPWRITE_OrderCollection_ID,
       ID.unique(),
       {
-        userId: user.$id,
+        userId: parseInt(user?.$id, 110),
         productId: product.id,
         quantity: product.qty || 1,
         total: total,
@@ -21,7 +21,7 @@ async function handlePlaceOrder(product, total, address) {
         status: 'pending',
         createdAt: new Date().toISOString(),
       }
-    );
+    )
 
     console.log(' Order saved:', order);
     alert('Order placed successfully!');
