@@ -2,6 +2,7 @@ import React from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import products from "./ProductList"; // import your product data
 import OrderDetails from "./OrderDetails";
+import ProductFeedbacks from "../Account/FeedbackPage";
 // import { handlePlaceOrder } from "../Account/BuyNowFun";
 
 function ItemDetails({ addToCart, isDark }) {
@@ -48,6 +49,7 @@ function ItemDetails({ addToCart, isDark }) {
         </div>
 
       </div>
+      <ProductFeedbacks/>
     </section>
   );
 }

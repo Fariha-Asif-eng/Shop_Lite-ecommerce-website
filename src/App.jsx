@@ -31,6 +31,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import OrderDetails from "./Comp/OrderDetails";
 import OrderHistory from "./Account/OrderHistory";
 import { ThemeProvider, useTheme } from "./context/ThemeContext";
+import FeedBackForm from "./Account/FeedBackForm";
 
 function AppContent() {
   const [cartItems, setCartItems] = useState([]);
@@ -148,6 +149,7 @@ function AppContent() {
               <Route path="/cartbox" element={<CartBox cartItems={cartItems} setCartItems={setCartItems} />} />
               <Route path="/orderdetails/:id" element={<OrderDetails isDark={isDark} />} />
               <Route path="/yourorders" element={<OrderHistory isDark={isDark} />} />
+              <Route path="/feedbackform" element={<FeedBackForm/>} />
             </Routes>
           </motion.div>
         </AnimatePresence>
