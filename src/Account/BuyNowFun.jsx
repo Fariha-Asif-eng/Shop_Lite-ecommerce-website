@@ -1,8 +1,6 @@
 import { DataBases, account} from '../Auth/Config';
 import {  ID } from 'appwrite';
 
-// const DATABASE_ID = 'your_database_id';
-// const COLLECTION_ID = 'orders';
 
 export const handlePlaceOrder = async ({product, total, address})=> {
   try {

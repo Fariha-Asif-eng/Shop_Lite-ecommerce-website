@@ -2,11 +2,12 @@ import React, { useEffect, useState } from 'react';
 import { DataBases, account } from '../Auth/Config';
 import { Query } from 'appwrite';
 import { Toaster, toast } from 'sonner';
+import { NavLink } from 'react-router-dom';
 
 const databaseId = import.meta.env.VITE_APPWRITE_DB_ID;
 const collectionId = import.meta.env.VITE_APPWRITE_OrderCollection_ID;
 
-function OrderList({isDark}) {
+function OrderList() {
   const [orders, setOrders] = useState([]);
   const [loading, setLoading] = useState(true);
 
@@ -39,6 +40,7 @@ function OrderList({isDark}) {
   if (orders.length === 0)
     return <p className="text-center mt-10 text-gray-500">No orders found.</p>;
 
+
   return (
     <div className={`bg-transparent max-w-3xl mx-auto mt-10 shadow-md rounded-md p-6`}>
       <Toaster position="top-center" />
@@ -57,7 +59,7 @@ function OrderList({isDark}) {
                 className={`text-sm font-semibold ${
                   order.status === 'pending'
                     ? 'text-yellow-600'
-                    : order.status === 'completed'
+                    : order.status === 'Delivered'
                     ? 'text-green-600'
                     : 'text-red-600'
                 }`}
@@ -65,9 +67,18 @@ function OrderList({isDark}) {
                 Status: {order.status}
               </p>
             </div>
-            <button className="px-3 py-1 text-sm bg-orange-500 text-white rounded hover:bg-orange-600">
-              View
-            </button>
+            <NavLink
+            to={'/feedbackform'}
+            state={{
+    productId: order.productId,
+    orderId: order.$id,
+     // or from logged in account.get()
+  }}
+            className="px-3 py-1 text-sm bg-orange-500 text-white rounded hover:bg-orange-600">
+              {
+                order.status === 'Delivered' ? 'Write feedback' : 'View'
+            }
+            </NavLink>
           </li>
         ))}
       </ul>

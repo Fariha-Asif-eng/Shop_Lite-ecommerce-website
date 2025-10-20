@@ -82,7 +82,6 @@ const handleSubmit = async (values, { resetForm }) => {
 
         <h2 className="text-xl font-semibold mb-3 text-center">Shipping & Billing</h2>
 
-        {/* ✅ Formik Wrapper */}
         <Formik
           initialValues={{ name: '', phone: '', address: '' }}
           validationSchema={validationSchema}
@@ -90,7 +89,7 @@ const handleSubmit = async (values, { resetForm }) => {
         >
           {() => (
             <Form className="space-y-4">
-              {/* Name Field */}
+           {/* //   Name */}
               <div>
                 <Field
                   type="text"
@@ -105,7 +104,7 @@ const handleSubmit = async (values, { resetForm }) => {
                 />
               </div>
 
-              {/* Phone Field */}
+            {/* //  Phone */}
               <div>
                 <Field
                   type="text"
@@ -120,7 +119,7 @@ const handleSubmit = async (values, { resetForm }) => {
                 />
               </div>
 
-              {/* Address Field */}
+              {/* //Address */}
               <div>
                 <Field
                   as="textarea"
